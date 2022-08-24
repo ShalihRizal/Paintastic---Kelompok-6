@@ -8,11 +8,19 @@ namespace Paintastic.GridSystem
 {
     public class PlayerDetection : MonoBehaviour
     {
-        [SerializeField] private Renderer rend;
+        public event System.Action OnCollectPointPicked;
 
         private void OnCollisionEnter(Collision collision)
         {
-            collision.gameObject.GetComponent<Player.Player>().OnCollideWithGrid += OnCollideWithGrid;
+            if (!CompareTag("CollectPoint"))
+            {
+                collision.gameObject.GetComponent<Player.Player>().OnCollideWithGrid += OnCollideWithGrid;
+            }
+            else
+            {
+                OnCollectPointPicked?.Invoke();
+                collision.gameObject.GetComponent<Player.Player>().OnCollideWithGrid += OnCollideWithGrid;
+            }
         }
         private void OnCollisionExit(Collision collision)
         {

@@ -1,50 +1,62 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameGrid : MonoBehaviour
+namespace Paintastic.GridSystem
 {
-	private int height = 8;
-	private int width = 8;
-	private float gridSpaceSize = 3.1f;
-	private int i = 0;
-
-	[SerializeField] private GameObject gridCellPrefabs;
-	private GameObject[,] gameGrid;
-	[SerializeField] PlayerController player1, player2;
-
-	void Start()
+	public class GameGrid : MonoBehaviour
 	{
-		CreateGrid();
-	}
-    private void Update()
-    {
-        foreach (GameObject go in gameGrid)
-        {
-			if (go.tag == "Owner1")
-            {
-				i++;
-            }
-        }
-		Debug.Log(i);
-		i = 0;
-    }
+		private int height = 8;
+		private int width = 8;
+		private float gridSpaceSize = 3.1f;
+		//private int i = 0;
 
-    private void CreateGrid()
-	{
-		gameGrid = new GameObject[height, width];
+		[SerializeField] private GameObject gridCellPrefabs;
+		private GameObject[,] gameGrid;
+		[SerializeField] PlayerController player1, player2;
+		//public event System.Action<GameObject[,]> OnPlayerTilesCount;
+		
 
-		for (int y = 0; y < height; y++)
+		void Start()
 		{
-			for (int x = 0; x < width; x++)
-			{
-				gameGrid[x, y] = Instantiate(gridCellPrefabs, new Vector3(x * gridSpaceSize, 0, y * gridSpaceSize), Quaternion.identity);
-				gameGrid[x, y].GetComponent<GridCell>().SetPosition(x, y);
-				gameGrid[x, y].transform.parent = transform;
-			}
+			CreateGrid();
 		}
-		player1.SetInit(player2,gameGrid,new Vector2Int(0,0));
-		player2.SetInit(player1,gameGrid,new Vector2Int(gameGrid.GetLength(0)-1,gameGrid.GetLength(1)-1));
-	}
+		private void Update()
+		{
+			foreach(GameObject go in gameGrid)
+			{
+				go.gameObject.GetComponent<PlayerDetection>().OnCollectPointPicked += OnCollcectPointPicked;
+			}
+			
+		}
+
+        private void OnCollcectPointPicked()
+        {
+			foreach (GameObject go in gameGrid)
+            {
+				//kirim score
+				//reset warna
+            }
+		}
+
+        private void CreateGrid()
+		{
+			gameGrid = new GameObject[height, width];
+
+			for (int y = 0; y < height; y++)
+			{
+				for (int x = 0; x < width; x++)
+				{
+					gameGrid[x, y] = Instantiate(gridCellPrefabs, new Vector3(x * gridSpaceSize, 0, y * gridSpaceSize), Quaternion.identity);
+					gameGrid[x, y].GetComponent<GridCell>().SetPosition(x, y);
+					gameGrid[x, y].transform.parent = transform;
+				}
+			}
+			player1.SetInit(player2,gameGrid,new Vector2Int(0,0));
+			player2.SetInit(player1,gameGrid,new Vector2Int(gameGrid.GetLength(0)-1,gameGrid.GetLength(1)-1));
+		}
 	
+	}
+
 }

@@ -124,5 +124,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edfc04f201479ff4b8dd9550bb8a52a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rend: {fileID: 4573312566708523817}
-  RedMaterial: {fileID: 2100000, guid: 2e646a74e0d7cba4b8af9964da547e42, type: 2}
