@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    [Header("Player")]
-    [SerializeField] private PlayerController player;
+    /*[Header("Player")]
+    [SerializeField] private PlayerController player;*/
 
     [Header("Direction")]
     [SerializeField] private KeyCode forward;
@@ -26,6 +26,6 @@ public class InputManager : MonoBehaviour
         else if (Input.GetKey(left)) dir = Vector2Int.left;
         else if (Input.GetKey(back)) dir = Vector2Int.down;
 
-        player.PlayerDir(dir);
+        GetComponent<PlayerController>().PlayerDir(dir);
     }
 }

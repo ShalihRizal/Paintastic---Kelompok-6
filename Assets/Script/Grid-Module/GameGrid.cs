@@ -11,7 +11,7 @@ public class GameGrid : MonoBehaviour
 
 	[SerializeField] private GameObject gridCellPrefabs;
 	private GameObject[,] gameGrid;
-
+	[SerializeField] PlayerController player1, player2;
 
 	void Start()
 	{
@@ -43,6 +43,8 @@ public class GameGrid : MonoBehaviour
 				gameGrid[x, y].transform.parent = transform;
 			}
 		}
+		player1.SetInit(player2,gameGrid,new Vector2Int(0,0));
+		player2.SetInit(player1,gameGrid,new Vector2Int(gameGrid.GetLength(0)-1,gameGrid.GetLength(1)-1));
 	}
 	
 }

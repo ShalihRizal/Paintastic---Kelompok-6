@@ -9,13 +9,20 @@ public class PlayerController : MonoBehaviour
     private Vector2Int current = new Vector2Int();
     private Vector2Int target = new Vector2Int();
 
-    public void SetInit(PlayerController anotherPlayer, Transform[,] path, Vector2Int spawnPoint)
+    public void SetInit(PlayerController anotherPlayer, GameObject[,] path, Vector2Int spawnPoint)
     {
         this.anotherPlayer = anotherPlayer;
-        this.path = path;
+        //this.path = path;
+        for(int i =0; i<path.GetLength(0);i++)
+        {
+            for (int j = 0; j < path.GetLength(1); j++)
+            {
+                this.path[i, j] = path[i, j].transform;
+            }
+        }
         current = spawnPoint;
 
-        transform.position = path[current.x, current.y].position;
+        transform.position = this.path[current.x, current.y].position;
     }
 
     private void Update()

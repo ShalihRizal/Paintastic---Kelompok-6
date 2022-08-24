@@ -21,7 +21,7 @@ public class Spawner : MonoBehaviour
             }
         }
 
-        player1.SetInit(player2, path, new Vector2Int(0, 0));
-        player2.SetInit(player1, path, new Vector2Int(path.GetLength(0) - 1, path.GetLength(1) - 1));
+        /*player1.SetInit(player2, path, new Vector2Int(0, 0));
+        player2.SetInit(player1, path, new Vector2Int(path.GetLength(0) - 1, path.GetLength(1) - 1));*/
     }
 }
