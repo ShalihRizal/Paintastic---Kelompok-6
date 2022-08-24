@@ -1,25 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Paintastic.Player;
+using System;
 
-public class PlayerDetection : MonoBehaviour
+namespace Paintastic.GridSystem
 {
-    [SerializeField] private Renderer rend;
-    private void OnCollisionEnter(Collision collision)
+    public class PlayerDetection : MonoBehaviour
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            rend.material.color = Color.red;
-            gameObject.tag = "Owner1";
-        }
-        else if (collision.gameObject.CompareTag("Player2"))
-        {
-            rend.material.color = Color.green;
-            gameObject.tag = "Owner2";
-        }
-    }
-    private void ColorCheck()
-    {
+        [SerializeField] private Renderer rend;
 
+        private void OnCollisionEnter(Collision collision)
+        {
+            collision.gameObject.GetComponent<Player.Player>().OnCollideWithGrid += OnCollideWithGrid;
+        }
+        private void OnCollisionExit(Collision collision)
+        {
+            collision.gameObject.GetComponent<Player.Player>().OnCollideWithGrid -= OnCollideWithGrid;
+            
+        }
+
+        private void OnCollideWithGrid(Material arg1, string arg2)
+        {
+            gameObject.GetComponent<MeshRenderer>().material = arg1;
+            gameObject.tag = arg2;
+        }
+
+        private void ColorCheck()
+        {
+
+        }
     }
 }

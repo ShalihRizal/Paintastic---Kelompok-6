@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 262125105}
   - component: {fileID: 262125104}
   - component: {fileID: 262125108}
+  - component: {fileID: 262125109}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -238,6 +239,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &262125109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 262125103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d4ab3e8f1f10994cbd2ec72c721a9e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMaterial: {fileID: 2100000, guid: 2e646a74e0d7cba4b8af9964da547e42, type: 2}
+  playerTag: Owner1
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -474,6 +489,7 @@ GameObject:
   - component: {fileID: 1732219910}
   - component: {fileID: 1732219909}
   - component: {fileID: 1732219908}
+  - component: {fileID: 1732219913}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Player2
@@ -576,3 +592,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1732219913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732219907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d4ab3e8f1f10994cbd2ec72c721a9e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMaterial: {fileID: 2100000, guid: e976ba1c7f6e7fa45ae49b39da40832c, type: 2}
+  playerTag: Owner2
