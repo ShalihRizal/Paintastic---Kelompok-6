@@ -31,12 +31,17 @@ namespace Paintastic.GridSystem
 			
 		}
 
-        private void OnCollcectPointPicked()
+        private void OnCollcectPointPicked(GameObject _gameObject)
         {
 			foreach (GameObject go in gameGrid)
             {
 				//kirim score
 				//reset warna
+				
+                if (go.CompareTag(_gameObject.tag))
+                {
+					ResetColor(go);
+				}
             }
 		}
 
@@ -55,6 +60,12 @@ namespace Paintastic.GridSystem
 			}
 			player1.SetInit(player2,gameGrid,new Vector2Int(0,0));
 			player2.SetInit(player1,gameGrid,new Vector2Int(gameGrid.GetLength(0)-1,gameGrid.GetLength(1)-1));
+		}
+		private void ResetColor(GameObject go)
+        {
+			Debug.Log(go.tag);
+			go.GetComponent<MeshRenderer>().material.color = Color.white;
+			go.tag = "Tile";
 		}
 	
 	}

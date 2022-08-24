@@ -8,7 +8,7 @@ namespace Paintastic.GridSystem
 {
     public class PlayerDetection : MonoBehaviour
     {
-        public event System.Action OnCollectPointPicked;
+        public event System.Action<GameObject> OnCollectPointPicked;
 
         private void OnCollisionEnter(Collision collision)
         {
@@ -18,7 +18,7 @@ namespace Paintastic.GridSystem
             }
             else
             {
-                OnCollectPointPicked?.Invoke();
+                OnCollectPointPicked?.Invoke(collision.gameObject);
                 collision.gameObject.GetComponent<Player.Player>().OnCollideWithGrid += OnCollideWithGrid;
             }
         }
@@ -34,9 +34,5 @@ namespace Paintastic.GridSystem
             gameObject.tag = arg2;
         }
 
-        private void ColorCheck()
-        {
-
-        }
     }
 }
