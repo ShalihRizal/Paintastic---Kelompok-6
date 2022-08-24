@@ -15,20 +15,28 @@ namespace Paintastic.GridSystem
 		[SerializeField] private GameObject gridCellPrefabs;
 		private GameObject[,] gameGrid;
 		[SerializeField] PlayerController player1, player2;
-		//public event System.Action<GameObject[,]> OnPlayerTilesCount;
+		private int playerScore=0;
 		
+		public event System.Action<string ,int> OnPlayerTilesCount;		
 
 		void Start()
 		{
 			CreateGrid();
-		}
-		private void Update()
-		{
-			foreach(GameObject go in gameGrid)
+			foreach (GameObject go in gameGrid)
 			{
 				go.gameObject.GetComponent<PlayerDetection>().OnCollectPointPicked += OnCollcectPointPicked;
 			}
+		}
+		private void OnEnable()
+		{
 			
+		}
+        private void OnDisable()
+        {
+			foreach (GameObject go in gameGrid)
+			{
+				go.gameObject.GetComponent<PlayerDetection>().OnCollectPointPicked -= OnCollcectPointPicked;
+			}
 		}
 
         private void OnCollcectPointPicked(GameObject _gameObject)
@@ -37,12 +45,14 @@ namespace Paintastic.GridSystem
             {
 				//kirim score
 				//reset warna
-				
                 if (go.CompareTag(_gameObject.tag))
                 {
+					playerScore += 1;
 					ResetColor(go);
 				}
             }
+			OnPlayerTilesCount?.Invoke(_gameObject.tag, playerScore);
+			playerScore = 0;
 		}
 
         private void CreateGrid()
@@ -63,7 +73,7 @@ namespace Paintastic.GridSystem
 		}
 		private void ResetColor(GameObject go)
         {
-			Debug.Log(go.tag);
+			//Debug.Log(go.tag);
 			go.GetComponent<MeshRenderer>().material.color = Color.white;
 			go.tag = "Tile";
 		}
