@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using ColorSelection;
+
 
 public class ReadyState : MonoBehaviour
 {
@@ -13,15 +15,16 @@ public class ReadyState : MonoBehaviour
     [SerializeField]
     private GameObject NextButton;
 
+    [SerializeField]
+    ColorSelector colorSelector;
+
     public void LoadScene(string sceneName)
     {
         if (isPlayer1Ready && isPlayer2Ready)
         {
+            PlayerPrefs.SetString("player1Color", colorSelector.GetPlayer1Color());
+            PlayerPrefs.SetString("player2Color", colorSelector.GetPlayer2Color());
             SceneManager.LoadScene(sceneName);
-        }
-        else
-        {
-            Debug.Log("The other player isn't ready yet");
         }
     }
 

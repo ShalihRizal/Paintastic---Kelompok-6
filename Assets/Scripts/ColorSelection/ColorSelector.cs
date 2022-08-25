@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ColorSelector
+namespace ColorSelection
 {
     public class ColorSelector : MonoBehaviour
     {
@@ -19,12 +19,34 @@ namespace ColorSelector
         [SerializeField]
         private Image halfRight;
 
-        private Color player1Color;
+        public Color player1Color;
 
-        private Color player2Color;
+        public Color player2Color;
 
         [SerializeField]
         int index = 0;
+
+        private void Start()
+        {
+            index = GetRandomNumber(0, 3);
+
+            ColorUtility.TryParseHtmlString(player1ColorList[index], out player1Color);
+            halfLeft.color = player1Color;
+
+            ColorUtility.TryParseHtmlString(player2ColorList[index], out player2Color);
+            halfRight.color = player2Color;
+        }
+
+        public static string ToRGBHex(Color c)
+        {
+            return string.Format("#{0:X2}{1:X2}{2:X2}", ToByte(c.r), ToByte(c.g), ToByte(c.b));
+        }
+
+        private static byte ToByte(float f)
+        {
+            f = Mathf.Clamp01(f);
+            return (byte)(f * 255);
+        }
 
         public void SetPlayer1Color(bool status)
         {
@@ -77,17 +99,20 @@ namespace ColorSelector
             halfRight.color = player2Color;
         }
 
-        //public void ScrollColor()
-        //{
+        int GetRandomNumber(int min, int max)
+        {
+            return Random.Range(min, max);
+        }
 
-        //}
+        public string GetPlayer1Color()
+        {
+            return ToRGBHex(player1Color);
+        }
 
-
-        //public void SetPlayerColor(List<string> colorList, string player, Color color, Image image)
-        //{
-        //    ColorUtility.TryParseHtmlString(colorList[Random.Range(0, colorList.Count)], out color);
-        //    image.color = color;
-        //}
+        public string GetPlayer2Color()
+        {
+            return ToRGBHex(player2Color);
+        }
     }
 }
 

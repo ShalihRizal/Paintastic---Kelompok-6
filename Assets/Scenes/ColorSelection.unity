@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 38338829}
   - component: {fileID: 38338828}
+  - component: {fileID: 38338830}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -170,6 +171,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &38338830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 38338827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68842536a134b2a46a0574bf0464327a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPlayer1Ready: 0
+  isPlayer2Ready: 0
+  NextButton: {fileID: 1914987530}
+  colorSelector: {fileID: 169367294}
 --- !u!1 &38656283
 GameObject:
   m_ObjectHideFlags: 0
@@ -382,6 +399,8 @@ MonoBehaviour:
   - '#CE407A'
   halfLeft: {fileID: 937788682}
   halfRight: {fileID: 578293902}
+  player1Color: {r: 0, g: 0, b: 0, a: 0}
+  player2Color: {r: 0, g: 0, b: 0, a: 0}
   index: 0
 --- !u!4 &169367295
 Transform:
@@ -2735,7 +2754,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1431906662}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1431906659}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 38338830}
+        m_TargetAssemblyTypeName: ReadyState, Assembly-CSharp
+        m_MethodName: ReadyPlayer1
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1431906662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3436,7 +3479,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1876749795}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1876749792}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 38338830}
+        m_TargetAssemblyTypeName: ReadyState, Assembly-CSharp
+        m_MethodName: ReadyPlayer2
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1876749795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3558,7 +3625,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1914987533}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 38338830}
+        m_TargetAssemblyTypeName: ReadyState, Assembly-CSharp
+        m_MethodName: LoadScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: SampleScene
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1914987533
 MonoBehaviour:
   m_ObjectHideFlags: 0

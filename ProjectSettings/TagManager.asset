@@ -4,10 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Tile
   - Player2
-  - Owner1
-  - Owner2
+  - Tile
   - CollectPoint
   layers:
   - Default
