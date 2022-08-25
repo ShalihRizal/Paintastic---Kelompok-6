@@ -14,6 +14,9 @@ namespace Paintastic.ScoreManager
         private bool isOver;
         [SerializeField] GameObject disableScore;
 
+        [SerializeField]
+        private GameObject resultScreen;
+
         private void OnEnable()
         {
             gameGrid.OnPlayerTilesCount += OnPlayerTilesCount;
@@ -26,7 +29,7 @@ namespace Paintastic.ScoreManager
         void Update()
         {
             //kondisi waktu habis
-            OnTimesUp();
+            
         }
 
         private void OnPlayerTilesCount(string arg1, int arg2)
@@ -36,20 +39,20 @@ namespace Paintastic.ScoreManager
 
             Debug.Log(player1 + " and " + player2);
         }
-        private void OnTimesUp()
+        public void OnTimesUp()
         {
-            if (player1 > player2)
-            {
-                Time.timeScale = 0;
-                Debug.Log("Player 1 Win");
-                disableScore.SetActive(false);
-            }
-            else if (player2 > player1)
-            {
-                Time.timeScale = 0;
-                Debug.Log("Player 2 Win");
-            }
+            resultScreen.SetActive(true);
+            disableScore.SetActive(false);
+        }
 
+        public int GetPlayer1Score()
+        {
+            return player1;
+        }
+
+        public int GetPlayer2Score()
+        {
+            return player2;
         }
     }
 }
