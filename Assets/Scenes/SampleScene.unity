@@ -739,6 +739,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameGrid: {fileID: 1164048313}
+  disableScore: {fileID: 1806536375}
 --- !u!4 &1806536377
 Transform:
   m_ObjectHideFlags: 0
