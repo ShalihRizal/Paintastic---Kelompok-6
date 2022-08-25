@@ -9,6 +9,15 @@ namespace Paintastic.Player
         public event System.Action<Material,string> OnCollideWithGrid;
         [SerializeField] private Material playerMaterial;
         //[SerializeField] private string playerTag;
+        private void Awake()
+        {
+            Color color;
+            if (PlayerPrefs.GetString("Player") == tag)
+            {
+                ColorUtility.TryParseHtmlString(PlayerPrefs.GetString("Player"), out color);
+                playerMaterial.color = color;
+            }
+        }
         private void Start()
         {
             gameObject.GetComponent<MeshRenderer>().material = playerMaterial;
