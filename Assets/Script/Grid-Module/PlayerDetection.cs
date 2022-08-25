@@ -14,17 +14,17 @@ namespace Paintastic.GridSystem
         {
             if (!CompareTag("CollectPoint"))
             {
-                collision.gameObject.GetComponent<Player.Player>().OnCollideWithGrid += OnCollideWithGrid;
+                collision.transform.root.gameObject.GetComponent<Player.Player>().OnCollideWithGrid += OnCollideWithGrid;
             }
             else
             {
                 OnCollectPointPicked?.Invoke(collision.gameObject);
-                collision.gameObject.GetComponent<Player.Player>().OnCollideWithGrid += OnCollideWithGrid;
+                collision.transform.root.gameObject.GetComponent<Player.Player>().OnCollideWithGrid += OnCollideWithGrid;
             }
         }
         private void OnCollisionExit(Collision collision)
         {
-            collision.gameObject.GetComponent<Player.Player>().OnCollideWithGrid -= OnCollideWithGrid;
+            collision.transform.root.gameObject.GetComponent<Player.Player>().OnCollideWithGrid -= OnCollideWithGrid;
             
         }
 

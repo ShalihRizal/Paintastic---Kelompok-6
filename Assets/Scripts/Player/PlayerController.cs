@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     private Transform[,] path = new Transform[8, 8];
     private Vector2Int current = new Vector2Int();
     private Vector2Int target = new Vector2Int();
-    private float walkDelay=.1f, tmpTime=0;
+    private float walkDelay=.15f, tmpTime=0;
 
     public void SetInit(PlayerController anotherPlayer, GameObject[,] path, Vector2Int spawnPoint)
     {
@@ -23,8 +23,8 @@ public class PlayerController : MonoBehaviour
         }
         current = spawnPoint;
 
-        //transform.position = this.path[current.x, current.y].position;
-        transform.position = new Vector3(this.path[current.x, current.y].position.x, 10f, this.path[current.x, current.y].position.y);
+        transform.position = this.path[current.x, current.y].position;
+        //transform.position = new Vector3(this.path[current.x, current.y].position.x, 10f, this.path[current.x, current.y].position.y);
     }
 
     private void Update()
@@ -59,11 +59,9 @@ public class PlayerController : MonoBehaviour
 
             current += target;
             target = Vector2Int.zero;
-            Debug.Log(tmpTime);
             transform.position = Vector3.Lerp(transform.position, new Vector3(path[current.x, current.y].position.x, transform.position.y, path[current.x, current.y].position.z), 1f);
             //transform.position = new Vector3(target.x, target.y, transform.position.z);
             tmpTime = 0;
-            Debug.Log("it should be walk");
         }
     }
 

@@ -8,7 +8,7 @@ namespace Paintastic.Player
     {
         public event System.Action<Material,string> OnCollideWithGrid;
         [SerializeField] private Material playerMaterial;
-        //[SerializeField] private string playerTag;
+        [SerializeField] private GameObject playerObject;
         private void Awake()
         {
             Color color;
@@ -20,7 +20,7 @@ namespace Paintastic.Player
         }
         private void Start()
         {
-            gameObject.GetComponent<MeshRenderer>().material = playerMaterial;
+            playerObject.GetComponent<MeshRenderer>().material = playerMaterial;
             gameObject.tag = gameObject.tag;
         }
         private void Update()
