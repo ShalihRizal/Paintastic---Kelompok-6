@@ -12,11 +12,14 @@ namespace Paintastic.Player
         private void Awake()
         {
             Color color;
-            if (PlayerPrefs.GetString("Player") == tag)
+            
+            if (!string.IsNullOrWhiteSpace(PlayerPrefs.GetString(gameObject.tag + "Color")))
             {
-                ColorUtility.TryParseHtmlString(PlayerPrefs.GetString("Player"), out color);
+                //Debug.Log(PlayerPrefs.GetString(gameObject.tag + "Color"));
+                ColorUtility.TryParseHtmlString(PlayerPrefs.GetString(gameObject.tag + "Color"), out color);
                 playerMaterial.color = color;
             }
+                
         }
         private void Start()
         {
