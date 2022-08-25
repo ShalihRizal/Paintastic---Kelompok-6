@@ -22,8 +22,8 @@ public class ReadyState : MonoBehaviour
     {
         if (isPlayer1Ready && isPlayer2Ready)
         {
-            PlayerPrefs.SetString("player1Color", colorSelector.GetPlayer1Color());
-            PlayerPrefs.SetString("player2Color", colorSelector.GetPlayer2Color());
+            PlayerPrefs.SetString("PlayerColor", colorSelector.GetPlayer1Color());
+            PlayerPrefs.SetString("Player2Color", colorSelector.GetPlayer2Color());
             SceneManager.LoadScene(sceneName);
         }
     }
