@@ -14,13 +14,17 @@ namespace Paintastic.GridSystem
 
 		[SerializeField] private GameObject gridCellPrefabs;
 		private GameObject[,] gameGrid;
-		[SerializeField] PlayerController player1, player2;
+		
+		PlayerController player1, player2;
 		private int playerScore=0;
 		
 		public event System.Action<string ,int> OnPlayerTilesCount;		
 
-		void Start()
+		public void InitStart(PlayerController p1, PlayerController p2)
 		{
+			player1 = p1;
+			player2 = p2;
+
 			CreateGrid();
 			foreach (GameObject go in gameGrid)
 			{
@@ -68,8 +72,8 @@ namespace Paintastic.GridSystem
 					gameGrid[x, y].transform.parent = transform;
 				}
 			}
-			player1.SetInit(player2,gameGrid,new Vector2Int(0,0));
-			player2.SetInit(player1,gameGrid,new Vector2Int(gameGrid.GetLength(0)-1,gameGrid.GetLength(1)-1));
+			/*player1.SetInit(player2,gameGrid,new Vector2Int(0,0));
+			player2.SetInit(player1,gameGrid,new Vector2Int(gameGrid.GetLength(0)-1,gameGrid.GetLength(1)-1));*/
 		}
 		private void ResetColor(GameObject go)
         {
@@ -77,7 +81,8 @@ namespace Paintastic.GridSystem
 			go.GetComponent<MeshRenderer>().material.color = Color.white;
 			go.tag = "Tile";
 		}
-	
+
+		public GameObject[,] GetGrid() => gameGrid;
 	}
 
 }
