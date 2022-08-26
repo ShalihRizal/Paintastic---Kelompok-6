@@ -1,23 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
+using System.Linq;
 
 public class AudioManager : MonoBehaviour
 {
-    [SerializeField]
-    BGM bgm;
+	private Audio[] audios;
+	public static AudioManager instance { get; private set;}
 
-    public static event Action playSFX;
-    public static event Action playBGM;
+	private void Awake()
+	{
+		if (instance != null && instance != this)
+		{
+			Destroy (gameObject);
+			return;
+		}
+		else
+		{
+			instance = this;
+		}
 
-    public void PlaySFX()
-    {
-        playSFX?.Invoke();
-    }
-    public void Awake()
-    {
-        playBGM?.Invoke();
-    }
-
+		foreach(Audio _audio in audios)
+		{
+			_audio.AudioSource = gameObject.AddComponent<AudioSource>();
+		}
+	}
 }
