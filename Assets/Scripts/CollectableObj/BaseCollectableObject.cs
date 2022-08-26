@@ -3,20 +3,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Paintastic.GridSystem;
+using Paintastic.Player;
 
 public abstract class BaseCollectableObject : MonoBehaviour, ISpawnObject
 {
     public Action<ISpawnObject> DeActiveObject { get; set;  }
+    public Action OnSpawnInField;
 
     private Vector2Int v2;
+    private GridCell[,] _grid;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<PlayerController>()) 
-            Activation();
+        Player subject = other.transform.parent.GetComponent<Player>();
+        if (subject)
+        {
+            Activation(subject);
+        }
     }
 
-    public Vector2Int GetCurrentPosition() => v2;
+    public void InitInstantiate(GridCell[,] grid)
+    {
+        _grid = grid;
+        gameObject.SetActive(false);
+    }
 
     public void SpawnObject(Vector2Int _pos, Transform _transform)
     {
@@ -31,9 +41,11 @@ public abstract class BaseCollectableObject : MonoBehaviour, ISpawnObject
         gameObject.SetActive(true);
     }
 
-    private void Activation()
+    public Vector2Int GetCurrentPosition() => v2;
+
+    private void Activation(Player subject)
     {
-        ActiveEfect();
+        ActiveEfect(_grid, subject);
         SetDeActiveObject();
     }
 
@@ -43,6 +55,5 @@ public abstract class BaseCollectableObject : MonoBehaviour, ISpawnObject
         gameObject.SetActive(false);
     }
 
-    public abstract void ActiveEfect();
-    public abstract void SubscribeActivation(Action action);
+    public abstract void ActiveEfect(GridCell[,] _grid, Player activator);
 }

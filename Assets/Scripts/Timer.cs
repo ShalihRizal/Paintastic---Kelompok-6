@@ -11,6 +11,7 @@ namespace Paintastic.Timer
     {
 
         public Action OnTimeToSpawn;
+        public Action OnTimesUp;
 
         [SerializeField]
         float initialTime = 15f;
@@ -40,7 +41,7 @@ namespace Paintastic.Timer
             else
             {
                 initialTime = 0;
-                scoreManager.OnTimesUp();
+                OnTimesUp?.Invoke();
                 Time.timeScale = 0;
 
             }

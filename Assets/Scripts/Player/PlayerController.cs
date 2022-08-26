@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour, ISpawnObject
     private float walkDelay=.15f, tmpTime=0;
 
     public Action<ISpawnObject> DeActiveObject { get; set; }
-
+    
     public void SetSpawn(PlayerController anotherPlayer, Vector2Int spawnPoint, GameGrid gg)
     {
         this.anotherPlayer = anotherPlayer;
@@ -25,11 +25,6 @@ public class PlayerController : MonoBehaviour, ISpawnObject
 
     private void Update()
     {
-        if (Time.timeScale == 0)
-        {
-            return;
-        }
-
         PlayerMove();
     }
 

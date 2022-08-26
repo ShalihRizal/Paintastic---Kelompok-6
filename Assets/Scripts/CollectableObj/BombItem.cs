@@ -2,19 +2,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Paintastic.GridSystem;
+using Paintastic.Player;
+
 
 public class BombItem : BaseCollectableObject
 {
-    private Action activationAction;
-
-    public override void ActiveEfect()
+    public override void ActiveEfect(GridCell[,] grid, Player activator)
     {
-        activationAction();
-        activationAction = null;
-    }
-
-    public override void SubscribeActivation(Action action)
-    {
-        activationAction += action;
+        foreach (GridCell item in grid)
+        {
+            if (item.CompareTag(activator.tag)) item.ResetColor();
+        }
     }
 }

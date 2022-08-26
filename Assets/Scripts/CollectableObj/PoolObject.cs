@@ -45,7 +45,7 @@ public class PoolObject : MonoBehaviour
         BaseCollectableObject clone = Instantiate(obj);
         pool.Add(clone);
 
-        clone.gameObject.SetActive(false);
+        clone.InitInstantiate(_spawner.GetGrid());
     }
 
     private void SpawnObject()
