@@ -8,25 +8,39 @@ public class SpawnerManager : MonoBehaviour
 {
     private GameGrid _gameGrid;
 
-    private PlayerMovement player1;
-    private PlayerMovement player2;
+    private PlayerMovement[] _players;
 
     private List<ISpawnObject> objectInField;
 
-    public void InitStart(GameGrid gg, PlayerMovement p1, PlayerMovement p2)
+    public void InitStart(GameGrid gg, PlayerMovement[] players)
     {
         objectInField = new List<ISpawnObject>();
 
         _gameGrid = gg;
 
-        player1 = p1;
-        player2 = p2;
+        _players = players;
 
-        objectInField.Add(player1);
-        objectInField.Add(player2);
+        Vector2Int[] spawnPos = new Vector2Int[4] {
+            new Vector2Int(0, 0),
+            new Vector2Int(_gameGrid.gridwidth - 1 , _gameGrid.gridHeight - 1),
+            new Vector2Int(0, _gameGrid.gridHeight - 1),
+            new Vector2Int(_gameGrid.gridwidth - 1, 0)
+        };
 
-        player1.StartInit(_gameGrid.GetGrid(), Vector2Int.zero);
-        player2.StartInit(_gameGrid.GetGrid(), new Vector2Int(_gameGrid.gridwidth - 1, _gameGrid.gridHeight - 1));
+        int idx = 0;
+        foreach (PlayerMovement player in _players)
+        {
+            objectInField.Add(player);
+
+
+
+            if (idx < 4)
+            {
+                player.StartInit(_gameGrid.GetGrid(), spawnPos[idx]);
+                idx++;
+            }
+            else RequestSpawnPos(player);
+        }
     }
 
     public void RequestSpawnPos(ISpawnObject _object)

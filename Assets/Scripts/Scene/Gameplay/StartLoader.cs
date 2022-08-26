@@ -8,21 +8,20 @@ using Paintastic.Player;
 
 public class StartLoader : MonoBehaviour
 {
-    [SerializeField] PlayerMovement _player1;
-    [SerializeField] PlayerMovement _player2;
-    [SerializeField] GameGrid _gameGrid;
-    [SerializeField] SpawnerManager _spawner;
-    [SerializeField] PoolObject _pool;
-    [SerializeField] Timer _timer;
-    [SerializeField] ScoreManager _scoreManager;
+    [SerializeField] private PlayerMovement[] players;
+    [SerializeField] private GameGrid _gameGrid;
+    [SerializeField] private SpawnerManager _spawner;
+    [SerializeField] private PoolObject _pool;
+    [SerializeField] private Timer _timer;
+    [SerializeField] private ScoreManager _scoreManager;
 
     void Start()
     {
-        _spawner.InitStart(_gameGrid, _player1, _player2);
+        _spawner.InitStart(_gameGrid, players);
         _pool.InitStart(_spawner, _timer);
         _scoreManager.StartInit(
-            _player1.GetComponent<Player>(),
-            _player2.GetComponent<Player>()
+            players[0].GetComponent<Player>(),
+            players[1].GetComponent<Player>()
             );
     }
 }
