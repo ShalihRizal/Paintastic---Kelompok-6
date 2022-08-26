@@ -22,7 +22,8 @@ public class ReadyState : MonoBehaviour
     {
         if (isPlayer1Ready && isPlayer2Ready)
         {
-            PlayerPrefs.SetString("PlayerColor", colorSelector.GetPlayer1Color());
+            //Belum Modular
+            PlayerPrefs.SetString("Player1Color", colorSelector.GetPlayer1Color());
             PlayerPrefs.SetString("Player2Color", colorSelector.GetPlayer2Color());
             SceneManager.LoadScene(sceneName);
         }

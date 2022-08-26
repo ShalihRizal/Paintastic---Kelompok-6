@@ -18,7 +18,7 @@ namespace Paintastic.ScoreManager
         [SerializeField] 
         Timer.Timer timer;
 
-        private bool isOver = false;
+
 
         [SerializeField] GameObject disableScore;
 
