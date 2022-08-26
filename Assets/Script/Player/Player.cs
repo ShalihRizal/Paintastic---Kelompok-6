@@ -8,10 +8,22 @@ namespace Paintastic.Player
     {
         public event System.Action<Material,string> OnCollideWithGrid;
         [SerializeField] private Material playerMaterial;
-        //[SerializeField] private string playerTag;
+        [SerializeField] private GameObject playerObject;
+        private void Awake()
+        {
+            Color color;
+            
+            if (!string.IsNullOrWhiteSpace(PlayerPrefs.GetString(gameObject.tag + "Color")))
+            {
+                //Debug.Log(PlayerPrefs.GetString(gameObject.tag + "Color"));
+                ColorUtility.TryParseHtmlString(PlayerPrefs.GetString(gameObject.tag + "Color"), out color);
+                playerMaterial.color = color;
+            }
+                
+        }
         private void Start()
         {
-            gameObject.GetComponent<MeshRenderer>().material = playerMaterial;
+            playerObject.GetComponent<MeshRenderer>().material = playerMaterial;
             gameObject.tag = gameObject.tag;
         }
         private void Update()

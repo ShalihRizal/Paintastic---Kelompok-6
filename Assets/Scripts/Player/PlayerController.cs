@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     private Transform[,] path = new Transform[8, 8];
     private Vector2Int current = new Vector2Int();
     private Vector2Int target = new Vector2Int();
+    private float walkDelay=.15f, tmpTime=0;
 
 
     public void SetInit(PlayerController anotherPlayer, GameObject[,] path, Vector2Int spawnPoint)
@@ -24,15 +25,12 @@ public class PlayerController : MonoBehaviour
         current = spawnPoint;
 
         transform.position = this.path[current.x, current.y].position;
+        //transform.position = new Vector3(this.path[current.x, current.y].position.x, 10f, this.path[current.x, current.y].position.y);
     }
 
     private void Update()
     {
-        if (Time.timeScale == 0)
-        {
-            return;
-        }
-        PlayerJump();
+        
         PlayerMove();
     }
 
@@ -45,7 +43,7 @@ public class PlayerController : MonoBehaviour
 
     private void PlayerMove()
     {
-        if (transform.position.y < 3) return;
+        /*if (transform.position.y < 3) return;
         if (current + target == anotherPlayer.GetPlayerPos()) return;
 
         current += target;
@@ -54,6 +52,17 @@ public class PlayerController : MonoBehaviour
         if (transform.position.x != path[current.x, current.y].position.x || transform.position.z != path[current.x, current.y].transform.position.z)
         {
             transform.position = Vector3.Lerp(transform.position, new Vector3(path[current.x, current.y].position.x, transform.position.y, path[current.x, current.y].position.z), 1f);
+        }*/
+        tmpTime += Time.deltaTime;
+        if (tmpTime > walkDelay)
+        {
+            if (current + target == anotherPlayer.GetPlayerPos()) return;
+
+            current += target;
+            target = Vector2Int.zero;
+            transform.position = Vector3.Lerp(transform.position, new Vector3(path[current.x, current.y].position.x, transform.position.y, path[current.x, current.y].position.z), 1f);
+            //transform.position = new Vector3(target.x, target.y, transform.position.z);
+            tmpTime = 0;
         }
     }
 
