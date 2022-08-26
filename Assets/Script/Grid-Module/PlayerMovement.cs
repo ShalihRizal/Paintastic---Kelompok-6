@@ -6,14 +6,16 @@ using UnityEngine;
 
 namespace Paintastic.Player
 {
-    public class PlayerMovement : MonoBehaviour
+    public class PlayerMovement : MonoBehaviour, ISpawnObject
     {
         private int pathWidth, pathHeigh;
-        private GameObject[,] path;
+        private GridCell[,] path;
         [SerializeField]
         private Vector2Int current = new Vector2Int();
         private Vector2Int target = new Vector2Int();
         private float walkDelay = .15f, tmpTime = 0;
+
+        public Action<ISpawnObject> DeActiveObject { get; set; }
 
         /*public void SetInit(PlayerController anotherPlayer, GameObject[,] path, Vector2Int spawnPoint)
         {
@@ -39,11 +41,13 @@ namespace Paintastic.Player
 
         }*/
 
-        void Start()
+        public void StartInit(GridCell[,] _path, Vector2Int _pos)
         {
-            path = GameGrid.gameGrid;
+            path = _path;
             pathHeigh = path.GetLength(0);
             pathWidth = path.GetLength(1);
+
+            SpawnObject(_pos, path[_pos.x, _pos.y].transform);
         }
 
         void Update()
@@ -57,7 +61,7 @@ namespace Paintastic.Player
             if (tmpTime > walkDelay)
             {
                 //if (current + target == anotherPlayer.GetPlayerPos()) return;
-                if (path[current.x+target.x, current.y+target.y].GetComponent<GridCell>().GetCellAvailablility()) return;
+                if (path[current.x+target.x, current.y+target.y].GetCellAvailablility()) return;
                 current += target;
 
                 target = Vector2Int.zero;
@@ -76,5 +80,19 @@ namespace Paintastic.Player
         }
 
         public Vector2Int GetPlayerPos() => current;
+
+        public void SpawnObject(Vector2Int _pos, Transform _transform)
+        {
+            current = _pos;
+
+            transform.position =
+                new Vector3(
+                    _transform.position.x,
+                    transform.position.y,
+                    _transform.position.z
+                );
+        }
+
+        public Vector2Int GetCurrentPosition() => current;
     }
 }
