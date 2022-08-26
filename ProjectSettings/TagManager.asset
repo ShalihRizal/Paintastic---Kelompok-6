@@ -9,6 +9,7 @@ TagManager:
   - Owner1
   - Owner2
   - CollectPoint
+  - BombItem
   layers:
   - Default
   - TransparentFX

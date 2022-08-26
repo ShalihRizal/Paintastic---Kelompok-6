@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Paintastic.Timer;
 
 public class PoolObject : MonoBehaviour
 {
@@ -13,20 +14,19 @@ public class PoolObject : MonoBehaviour
     private List<BaseCollectableObject> _bombItemPool;
 
     private SpawnerManager _spawner;
-
-    private void OnEnable()
-    {
-        //SpawnObjectSubsTimer
-    }
+    private Timer _timer;
 
     private void OnDisable()
     {
-        
+        _timer.OnTimeToSpawn -= SpawnObject;
     }
 
-    public void InitStart(SpawnerManager spawner)
+    public void InitStart(SpawnerManager spawner, Timer timer)
     {
         _spawner = spawner;
+        _timer = timer;
+
+        _timer.OnTimeToSpawn += SpawnObject;
 
         _collectPointPool = new List<BaseCollectableObject>();
         _bombItemPool = new List<BaseCollectableObject>();
@@ -37,8 +37,7 @@ public class PoolObject : MonoBehaviour
             InstantiateNewOne(_bombItem, _bombItemPool);
         }
 
-        //SpawnObject();
-        //SpawnObject();
+        SpawnObject();
     }
 
     private void InstantiateNewOne(BaseCollectableObject obj, List<BaseCollectableObject> pool)
