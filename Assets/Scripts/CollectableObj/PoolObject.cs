@@ -4,6 +4,76 @@ using UnityEngine;
 
 public class PoolObject : MonoBehaviour
 {
-    [SerializeField] GameObject _object;
+    [SerializeField] CollectPointItem _collectPointItem;
+    [SerializeField] BombItem _bombItem;
+
     [SerializeField] int _size;
+
+    private List<BaseCollectableObject> _collectPointPool;
+    private List<BaseCollectableObject> _bombItemPool;
+
+    private SpawnerManager _spawner;
+
+    private void OnEnable()
+    {
+        //SpawnObjectSubsTimer
+    }
+
+    private void OnDisable()
+    {
+        
+    }
+
+    public void InitStart(SpawnerManager spawner)
+    {
+        _spawner = spawner;
+
+        _collectPointPool = new List<BaseCollectableObject>();
+        _bombItemPool = new List<BaseCollectableObject>();
+
+        for (int i = 0; i < _size; i++)
+        {
+            InstantiateNewOne(_collectPointItem, _collectPointPool);
+            InstantiateNewOne(_bombItem, _bombItemPool);
+        }
+
+        //SpawnObject();
+        //SpawnObject();
+    }
+
+    private void InstantiateNewOne(BaseCollectableObject obj, List<BaseCollectableObject> pool)
+    {
+        BaseCollectableObject clone = Instantiate(obj);
+        pool.Add(clone);
+
+        clone.gameObject.SetActive(false);
+    }
+
+    private void SpawnObject()
+    {
+        BaseCollectableObject item = null;
+        switch (Random.Range(0, 2))
+        {
+            case 0:
+                item = GetItem(_collectPointPool);
+                break;
+            case 1:
+                item = GetItem(_bombItemPool);
+                break;
+        }
+
+        if (item)
+            _spawner.RequestSpawnPos(item);
+    }
+
+    private BaseCollectableObject GetItem(List<BaseCollectableObject> pool)
+    {
+        foreach (BaseCollectableObject obj in pool)
+        {
+            if (!obj.gameObject.activeInHierarchy) 
+                return obj;
+        }
+
+        return null;
+    }
 }

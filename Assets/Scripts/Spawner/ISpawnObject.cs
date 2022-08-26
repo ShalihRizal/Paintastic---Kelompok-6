@@ -6,6 +6,6 @@ using UnityEngine;
 public interface ISpawnObject
 {
     public Action<ISpawnObject> DeActiveObject { get; set; }
-    public void SpawnObject(Vector2Int _pos);
+    public void SpawnObject(Vector2Int _pos, Transform _transform);
     public Vector2Int GetCurrentPosition();
 }

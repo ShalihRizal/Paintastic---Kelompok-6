@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2894928777200666862}
   - component: {fileID: 5388299204454613451}
   - component: {fileID: 4015147371526789155}
+  - component: {fileID: -7445105274299394223}
   m_Layer: 0
   m_Name: CollectPoint
   m_TagString: Untagged
@@ -26,14 +27,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2062090154003101383}
-  m_LocalRotation: {x: -0.27059814, y: 0.27059796, z: -0.6532813, w: -0.65328175}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.35355338, y: -0.1464466, z: 0.35355338, w: 0.8535535}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 450}
+  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 45}
 --- !u!33 &2894928777200666862
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -97,3 +98,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-7445105274299394223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2062090154003101383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e3a6c0aa70ddb9459a39d8960fb5750, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

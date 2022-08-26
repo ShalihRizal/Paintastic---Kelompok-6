@@ -1,17 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Paintastic.GridSystem;
 
 public class SpawnerManager : MonoBehaviour
 {
+    private GameGrid _gameGrid;
+
     private PlayerController player1;
     private PlayerController player2;
 
     private List<ISpawnObject> objectInField;
 
-    public void InitStart(PlayerController p1, PlayerController p2)
+    public void InitStart(GameGrid gg, PlayerController p1, PlayerController p2)
     {
         objectInField = new List<ISpawnObject>();
+
+        _gameGrid = gg;
 
         player1 = p1;
         player2 = p2;
@@ -19,8 +24,8 @@ public class SpawnerManager : MonoBehaviour
         objectInField.Add(player1);
         objectInField.Add(player2);
 
-        player1.SetSpawn(player2, Vector2Int.zero);
-        player2.SetSpawn(player1, new Vector2Int(7, 7));
+        player1.SetSpawn(player2, Vector2Int.zero, _gameGrid);
+        player2.SetSpawn(player1, new Vector2Int(7, 7), _gameGrid);
     }
 
     public void RequestSpawnPos(ISpawnObject _object)
@@ -28,10 +33,13 @@ public class SpawnerManager : MonoBehaviour
         Vector2Int randPos = new Vector2Int();
         do
         {
-            randPos = new Vector2Int();
+            randPos = new Vector2Int(
+                Random.Range(0, _gameGrid.GetGrid().GetLength(0)),
+                Random.Range(0, _gameGrid.GetGrid().GetLength(1))
+                );
         } while (!CheckCanSpawn(randPos));
 
-        _object.SpawnObject(randPos);
+        _object.SpawnObject(randPos, _gameGrid.GetGrid()[randPos.x, randPos.y].transform);
 
         objectInField.Add(_object);
         _object.DeActiveObject += ObjectDeActive;
@@ -47,8 +55,5 @@ public class SpawnerManager : MonoBehaviour
         return true;
     }
 
-    private void ObjectDeActive(ISpawnObject obj)
-    {
-        objectInField.Remove(obj);
-    }
+    private void ObjectDeActive(ISpawnObject obj) => objectInField.Remove(obj);
 }

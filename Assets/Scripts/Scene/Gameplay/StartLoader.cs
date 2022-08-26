@@ -10,13 +10,12 @@ public class StartLoader : MonoBehaviour
     [SerializeField] PlayerController _player2;
     [SerializeField] GameGrid _gameGrid;
     [SerializeField] SpawnerManager _spawner;
+    [SerializeField] PoolObject _pool;
 
     void Start()
     {
-        _player1.SetGrid(_gameGrid);
-        _player2.SetGrid(_gameGrid);
-
         _gameGrid.InitStart(_player1, _player2);
-        _spawner.InitStart(_player1, _player2);
+        _spawner.InitStart(_gameGrid, _player1, _player2);
+        _pool.InitStart(_spawner);
     }
 }

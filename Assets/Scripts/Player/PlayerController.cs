@@ -15,12 +15,12 @@ public class PlayerController : MonoBehaviour, ISpawnObject
 
     public Action<ISpawnObject> DeActiveObject { get; set; }
 
-    public void SetGrid(GameGrid grid) => _grid = grid;
-
-    public void SetSpawn(PlayerController anotherPlayer, Vector2Int spawnPoint)
+    public void SetSpawn(PlayerController anotherPlayer, Vector2Int spawnPoint, GameGrid gg)
     {
         this.anotherPlayer = anotherPlayer;
-        SpawnObject(spawnPoint);
+        _grid = gg;
+
+        SpawnObject(spawnPoint, _grid.GetGrid()[spawnPoint.x, spawnPoint.y].transform);
     }
 
     private void Update()
@@ -52,15 +52,15 @@ public class PlayerController : MonoBehaviour, ISpawnObject
         targetPos = dir;
     }
 
-    public void SpawnObject(Vector2Int _pos)
+    public void SpawnObject(Vector2Int _pos, Transform _transform)
     {
         currentPos = _pos;
 
         transform.position = 
             new Vector3(
-                _grid.GetGrid()[currentPos.x, currentPos.y].transform.position.x,
+                _transform.position.x,
                 transform.position.y,
-                _grid.GetGrid()[currentPos.x, currentPos.y].transform.position.z
+                _transform.position.z
             );
     }
 
