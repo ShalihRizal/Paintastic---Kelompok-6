@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Paintastic.GridSystem;
 using System;
+using Paintastic.Timer;
 
 namespace Paintastic.ScoreManager
 {
@@ -10,12 +11,18 @@ namespace Paintastic.ScoreManager
     {
         private int player1 = 0;
         private int player2 = 0;
-        [SerializeField] GameGrid gameGrid;
-        private bool isOver;
+
+        [SerializeField] 
+        GameGrid gameGrid;
+
+        [SerializeField] 
+        Timer.Timer timer;
+
+        private bool isOver = false;
+
         [SerializeField] GameObject disableScore;
 
-        [SerializeField]
-        private GameObject resultScreen;
+        public Action OnScoreChanged;
 
         private void OnEnable()
         {
@@ -29,19 +36,32 @@ namespace Paintastic.ScoreManager
         void Update()
         {
             //kondisi waktu habis
-            
+
         }
 
         private void OnPlayerTilesCount(string arg1, int arg2)
         {
-            if (arg1 == "Player") player1 += arg2;
-            else player2 += arg2;
+            if (arg1 == "Player")
+            {
+                player1 += arg2;
+            }
+            else
+            {
+                player2 += arg2;
+            }
+
+            OnScoreChanged?.Invoke();
 
             Debug.Log(player1 + " and " + player2);
         }
         public void OnTimesUp()
         {
-            resultScreen.SetActive(true);
+            timer.OnTimesUp += disable;
+        }
+
+        void disable()
+        {
+            //resultScreen.SetActive(true);
             disableScore.SetActive(false);
         }
 
