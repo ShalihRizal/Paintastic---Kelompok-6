@@ -7,7 +7,7 @@ public class GridCell : MonoBehaviour
 	private int posX;
 	private int posY;
 
-	public bool isOccupied = false;
+	private bool isOccupied = false;
 
 	public void SetPosition(int x, int y)
 	{
@@ -19,4 +19,13 @@ public class GridCell : MonoBehaviour
 	{
 		return new Vector2Int(posX, posY);
 	}
+
+	public bool GetCellAvailablility()
+    {
+		return isOccupied;
+    }
+	public void SetCellAvailablility()
+    {
+		isOccupied = !isOccupied;
+    }
 }
