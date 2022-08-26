@@ -24,8 +24,16 @@ public class GridCell : MonoBehaviour
     {
 		return isOccupied;
     }
+
 	public void SetCellAvailablility()
     {
 		isOccupied = !isOccupied;
     }
+
+	public void ResetColor()
+	{
+		//Debug.Log(go.tag);
+		GetComponent<MeshRenderer>().material.color = Color.white;
+		gameObject.tag = "Tile";
+	}
 }

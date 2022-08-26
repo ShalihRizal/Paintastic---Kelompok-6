@@ -4,10 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Player2
-  - Tile
+  - BombItem
   - CollectPoint
+  - Player2
   - Player1
+  - Tile
   layers:
   - Default
   - TransparentFX
