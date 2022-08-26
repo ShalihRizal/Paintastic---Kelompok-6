@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private Vector2Int current = new Vector2Int();
     private Vector2Int target = new Vector2Int();
 
+
     public void SetInit(PlayerController anotherPlayer, GameObject[,] path, Vector2Int spawnPoint)
     {
         this.anotherPlayer = anotherPlayer;
@@ -27,6 +28,10 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (Time.timeScale == 0)
+        {
+            return;
+        }
         PlayerJump();
         PlayerMove();
     }
