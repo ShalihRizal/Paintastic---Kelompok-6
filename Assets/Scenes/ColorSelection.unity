@@ -590,7 +590,7 @@ MonoBehaviour:
   - {fileID: 1431906661}
   - {fileID: 1876749794}
   - {fileID: 1196755798}
-  - {fileID: 1914987532}
+  - {fileID: 0}
   - {fileID: 1082660651}
   - {fileID: 1045216687}
   - {fileID: 2053357475}
@@ -5063,7 +5063,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayer1Ready: 0
   isPlayer2Ready: 0
-  NextButton: {fileID: 1914987530}
+  NextButton: {fileID: 0}
   colorSelector: {fileID: 169367294}
 --- !u!4 &1309065947
 Transform:
