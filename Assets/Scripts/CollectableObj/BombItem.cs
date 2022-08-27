@@ -5,14 +5,17 @@ using UnityEngine;
 using Paintastic.GridSystem;
 using Paintastic.Player;
 
-
-public class BombItem : BaseCollectableObject
+namespace Paintastic.CollectibleObject
 {
-    public override void ActiveEfect(GridCell[,] grid, Player activator)
+    public class BombItem : BaseCollectableObject
     {
-        foreach (GridCell item in grid)
+        public override void ActiveEfect(GridCell[,] grid, Player.Player activator)
         {
-            if (item.CompareTag(activator.tag)) item.ResetColor();
+            foreach (GridCell item in grid)
+            {
+                if (item.CompareTag(activator.tag)) item.ResetColor();
+            }
         }
     }
+
 }

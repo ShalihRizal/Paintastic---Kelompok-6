@@ -4,22 +4,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using Paintastic.Player;
 
-public class CollectPointItem : BaseCollectableObject
+namespace Paintastic.CollectibleObject
 {
-    public override void ActiveEfect(GridCell[,] _grids, Player activator)
+    public class CollectPointItem : BaseCollectableObject
     {
-        int score = 0;
-        foreach (GridCell go in _grids)
+        public override void ActiveEfect(GridCell[,] _grids, Player.Player activator)
         {
-            //kirim score
-            //reset warna
-            if (go.CompareTag(activator.tag))
+            int score = 0;
+            foreach (GridCell go in _grids)
             {
-                score += 1;
-                go.ResetColor();
+                //kirim score
+                //reset warna
+                if (go.CompareTag(activator.tag))
+                {
+                    score += 1;
+                    go.ResetColor();
+                }
             }
-        }
 
-        activator.SendMyScore(score);
+            activator.SendMyScore(score);
+        }
     }
+
 }
