@@ -1,69 +1,68 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Paintastic.GridSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, ISpawnObject
 {
-    private PlayerController anotherPlayer = null;
-    private Transform[,] path = new Transform[8, 8];
-    private Vector2Int current = new Vector2Int();
-    private Vector2Int target = new Vector2Int();
+    private GameGrid _grid;
 
+    private ISpawnObject anotherPlayer = null;
+    private Vector2Int currentPos = new Vector2Int();
+    private Vector2Int targetPos = new Vector2Int();
+    private float walkDelay=.15f, tmpTime=0;
 
-    public void SetInit(PlayerController anotherPlayer, GameObject[,] path, Vector2Int spawnPoint)
+    public Action<ISpawnObject> DeActiveObject { get; set; }
+    
+    public void SetSpawn(PlayerController anotherPlayer, Vector2Int spawnPoint, GameGrid gg)
     {
         this.anotherPlayer = anotherPlayer;
-        //this.path = path;
-        for(int i =0; i<path.GetLength(0);i++)
-        {
-            for (int j = 0; j < path.GetLength(1); j++)
-            {
-                this.path[i, j] = path[i, j].transform;
-            }
-        }
-        current = spawnPoint;
+        _grid = gg;
 
-        transform.position = this.path[current.x, current.y].position;
+        SpawnObject(spawnPoint, _grid.GetGrid()[spawnPoint.x, spawnPoint.y].transform);
     }
 
     private void Update()
     {
-        if (Time.timeScale == 0)
-        {
-            return;
-        }
-        PlayerJump();
         PlayerMove();
-    }
-
-    private void PlayerJump()
-    {
-        if (transform.position.y <= 1) transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, 3, transform.position.z), 1f);
-        else transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, 1, transform.position.z),
-            0.1f / Vector3.Distance(transform.position, new Vector3(transform.position.x, 1, transform.position.z)));
     }
 
     private void PlayerMove()
     {
-        if (transform.position.y < 3) return;
-        if (current + target == anotherPlayer.GetPlayerPos()) return;
-
-        current += target;
-        target = Vector2Int.zero;
-
-        if (transform.position.x != path[current.x, current.y].position.x || transform.position.z != path[current.x, current.y].transform.position.z)
+        tmpTime += Time.deltaTime;
+        if (tmpTime > walkDelay)
         {
-            transform.position = Vector3.Lerp(transform.position, new Vector3(path[current.x, current.y].position.x, transform.position.y, path[current.x, current.y].position.z), 1f);
+            if (currentPos + targetPos == anotherPlayer.GetCurrentPosition()) return;
+            currentPos += targetPos;
+            targetPos = Vector2Int.zero;
+
+            Transform currentPath = _grid.GetGrid()[currentPos.x, currentPos.y].transform;
+            transform.position = Vector3.Lerp(transform.position, new Vector3(currentPath.position.x, transform.position.y, currentPath.position.z), 1f);
+            //transform.position = new Vector3(target.x, target.y, transform.position.z);
+            tmpTime = 0;
         }
     }
 
     public void PlayerDir(Vector2Int dir)
     {
-        if (current.x + dir.x < 0 || current.x + dir.x >= path.GetLength(0)
-            || current.y + dir.y < 0 || current.y + dir.y >= path.GetLength(1)) return;
+        if (currentPos.x + dir.x < 0 || currentPos.x + dir.x > 7
+            || currentPos.y + dir.y < 0 || currentPos.y + dir.y > 7) return;
 
-        target = dir;
+        targetPos = dir;
     }
 
-    public Vector2Int GetPlayerPos() => current;
+    public void SpawnObject(Vector2Int _pos, Transform _transform)
+    {
+        currentPos = _pos;
+
+        transform.position = 
+            new Vector3(
+                _transform.position.x,
+                transform.position.y,
+                _transform.position.z
+            );
+    }
+
+    public Vector2Int GetCurrentPosition() => currentPos;
 }

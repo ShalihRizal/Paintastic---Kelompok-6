@@ -4,11 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Tile
-  - Player2
-  - Owner1
-  - Owner2
+  - BombItem
   - CollectPoint
+  - Player2
+  - Player1
+  - Tile
   layers:
   - Default
   - TransparentFX
