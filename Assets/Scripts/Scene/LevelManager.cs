@@ -15,6 +15,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI progressText;
 
+    public event System.Action<string> OnChangeScene;
+
     public void LoadLevel(string sceneName)
     {
         StartCoroutine(LoadAsynchronously(sceneName));
@@ -25,7 +27,7 @@ public class LevelManager : MonoBehaviour
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
 
         loadingScreen.SetActive(true);
-
+        OnChangeScene?.Invoke(sceneName);
         while (!operation.isDone)
         {
             float progress = Mathf.Clamp01(operation.progress / .9f);
