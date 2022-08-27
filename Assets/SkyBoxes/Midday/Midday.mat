@@ -22,7 +22,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BackTex:
-        m_Texture: {fileID: 2800000, guid: fd76a3d85fa584e42834036916a79b6b, type: 3}
+        m_Texture: {fileID: 2800000, guid: 18b0e531b56cfec4c95b694ebf53b883, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -42,7 +42,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DownTex:
-        m_Texture: {fileID: 2800000, guid: b064041c87bd8fb4ba2c21aa4863127e, type: 3}
+        m_Texture: {fileID: 2800000, guid: ea72410b47fb4574db0c904d20861f27, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
@@ -50,11 +50,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _FrontTex:
-        m_Texture: {fileID: 2800000, guid: dffdb4378818bc5469033648c57bd0b1, type: 3}
+        m_Texture: {fileID: 2800000, guid: 828e0db50a01d994cb4112d41abe72b7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _LeftTex:
-        m_Texture: {fileID: 2800000, guid: fd5f7c807ca1ea643b0ae501ff889a70, type: 3}
+        m_Texture: {fileID: 2800000, guid: 90fb4a489ee271f40b426198dc875e48, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -74,7 +74,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _RightTex:
-        m_Texture: {fileID: 2800000, guid: 14877617607f5fb47af48fcd766426ad, type: 3}
+        m_Texture: {fileID: 2800000, guid: 948709590a5e1ff4385aac9d4ef4310e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Tex:
@@ -82,7 +82,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _UpTex:
-        m_Texture: {fileID: 2800000, guid: 4e02df907356e0848a5d76021b80192a, type: 3}
+        m_Texture: {fileID: 2800000, guid: 46f6c9ae10d4b924a8b1eeb5a14c760e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
@@ -98,7 +98,7 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Rotation: 0
+    - _Rotation: 124.02775
     - _SrcBlend: 1
     - _SunDisk: 2
     - _SunSize: 0.732

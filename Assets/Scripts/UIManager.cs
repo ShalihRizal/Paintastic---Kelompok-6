@@ -25,6 +25,9 @@ public class UIManager : MonoBehaviour
     private GameObject resultScreen;
 
     [SerializeField]
+    private GameObject pauseButton;
+
+    [SerializeField]
     Timer timer;
 
     private void Update()
@@ -44,6 +47,7 @@ public class UIManager : MonoBehaviour
         player1ScoreText.gameObject.SetActive(false);
         player2ScoreText.gameObject.SetActive(false);
         timerText.gameObject.SetActive(false);
+        pauseButton.gameObject.SetActive(false);
         resultScreen.SetActive(true);
     }
 }
