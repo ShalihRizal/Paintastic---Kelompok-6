@@ -10,19 +10,20 @@ public class AudioManager : MonoBehaviour
 	[SerializeField]
 	ScritptableObjectAudio savedAudio;
 
+	//private string sceneName = "";
+	[SerializeField]
 	LevelManager levelManager;
 	public static AudioManager instance { get; private set;}
 
     private void OnEnable()
     {
-		DontDestroyOnLoad(gameObject);
-		levelManager.OnChangeScene += CheckBGM;
+        DontDestroyOnLoad(gameObject);
+        levelManager.OnChangeScene += CheckBGM;
     }
     /*private void OnDisable()
     {
 		levelManager.OnChangeScene -= CheckBGM;
     }*/
-
     private void Awake()
 	{
 		if (instance != null && instance != this)
@@ -53,7 +54,7 @@ public class AudioManager : MonoBehaviour
     }
 	private void CheckBGM(string sceneName)
     {
-		levelManager = FindObjectOfType<LevelManager>();
+		
 		if (sceneName == "MainMenu")
         {
 			PlayBgm(savedAudio.MenuBGM);
@@ -76,5 +77,9 @@ public class AudioManager : MonoBehaviour
 			a.AudioSource.Stop();
         }
 		searchBGM?.AudioSource.Play();
+    }
+	public void PlaySfx(string sfxName)
+    {
+
     }
 }

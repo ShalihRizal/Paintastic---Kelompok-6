@@ -16,10 +16,29 @@ public class LevelManager : MonoBehaviour
     private TextMeshProUGUI progressText;
 
     public event System.Action<string> OnChangeScene;
+    public static LevelManager instance;
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        else
+        {
+            instance = this;
+        }
+    }
 
     public void LoadLevel(string sceneName)
     {
-        StartCoroutine(LoadAsynchronously(sceneName));
+        OnChangeScene?.Invoke(sceneName);
+        if (!(instance != null && instance != this))
+        {
+            StartCoroutine(LoadAsynchronously(sceneName));
+        }
+        
     }
 
     IEnumerator LoadAsynchronously(string sceneName)
@@ -27,7 +46,7 @@ public class LevelManager : MonoBehaviour
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
 
         loadingScreen.SetActive(true);
-        OnChangeScene?.Invoke(sceneName);
+
         while (!operation.isDone)
         {
             float progress = Mathf.Clamp01(operation.progress / .9f);

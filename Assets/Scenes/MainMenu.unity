@@ -733,6 +733,7 @@ GameObject:
   - component: {fileID: 448353932}
   - component: {fileID: 448353931}
   - component: {fileID: 448353930}
+  - component: {fileID: 448353933}
   m_Layer: 5
   m_Name: PlayButton
   m_TagString: Untagged
@@ -855,6 +856,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 448353928}
   m_CullTransparentMesh: 1
+--- !u!114 &448353933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 448353928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f72a60f3f5b8c340bf7fc321a66dd6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 448353930}
+  sceneName: ColorSelection
 --- !u!1 &481410174
 GameObject:
   m_ObjectHideFlags: 0
