@@ -16,7 +16,7 @@ public class UIManager : MonoBehaviour
     private TextMeshProUGUI player2ScoreText;
 
     [SerializeField]
-    private TextMeshProUGUI timerText;
+    private GameObject hud;
 
     [SerializeField]
     ScoreManager scoreManager;
@@ -38,15 +38,14 @@ public class UIManager : MonoBehaviour
 
     private void OnScoreChanged()
     {
-        player1ScoreText.text = "Player 1 : " + scoreManager.GetPlayer1Score().ToString();
-        player2ScoreText.text = "Player 2 : " + scoreManager.GetPlayer2Score().ToString();
+        player1ScoreText.text = scoreManager.GetPlayer1Score().ToString();
+        player2ScoreText.text = scoreManager.GetPlayer2Score().ToString();
     }
 
     void onTimesUp()
     {
-        player1ScoreText.gameObject.SetActive(false);
-        player2ScoreText.gameObject.SetActive(false);
-        timerText.gameObject.SetActive(false);
+
+        hud.SetActive(false);
         pauseButton.gameObject.SetActive(false);
         resultScreen.SetActive(true);
     }
