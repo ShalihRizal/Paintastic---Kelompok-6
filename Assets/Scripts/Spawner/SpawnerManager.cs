@@ -32,8 +32,6 @@ public class SpawnerManager : MonoBehaviour
         {
             objectInField.Add(player);
 
-
-
             if (idx < 4)
             {
                 player.StartInit(_gameGrid.GetGrid(), spawnPos[idx]);

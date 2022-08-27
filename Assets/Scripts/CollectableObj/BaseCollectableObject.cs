@@ -9,6 +9,7 @@ public abstract class BaseCollectableObject : MonoBehaviour, ISpawnObject
 {
     public Action<ISpawnObject> DeActiveObject { get; set;  }
     public Action OnSpawnInField;
+    public Action AfterDeActiveObject;
 
     private Vector2Int v2;
     private GridCell[,] _grid;
@@ -22,9 +23,10 @@ public abstract class BaseCollectableObject : MonoBehaviour, ISpawnObject
         }
     }
 
-    public void InitInstantiate(GridCell[,] grid)
+    public void InitInstantiate(GridCell[,] grid, Action AfterDeactive)
     {
         _grid = grid;
+        AfterDeActiveObject = AfterDeactive;
         gameObject.SetActive(false);
     }
 
@@ -53,6 +55,8 @@ public abstract class BaseCollectableObject : MonoBehaviour, ISpawnObject
     {
         DeActiveObject(this);
         gameObject.SetActive(false);
+
+        AfterDeActiveObject();
     }
 
     public abstract void ActiveEfect(GridCell[,] _grid, Player activator);

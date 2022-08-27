@@ -10,6 +10,9 @@ namespace Paintastic.Player
         public event System.Action<string, int> OnSendScore;
         [SerializeField] private Material playerMaterial;
         [SerializeField] private GameObject playerObject;
+
+        private float timeWhenCollectScore = 10;
+
         private void Awake()
         {
             Color color;
@@ -29,13 +32,19 @@ namespace Paintastic.Player
         }
         private void Update()
         {
+            timeWhenCollectScore += Time.deltaTime;
+
             OnCollideWithGrid?.Invoke(playerMaterial, gameObject.tag);
         }
 
 
         public void SendMyScore(int score)
         {
+            if (timeWhenCollectScore < 7) score *= 2;
+
             OnSendScore(tag, score);
+
+            timeWhenCollectScore = 0;
         }
 
     }
