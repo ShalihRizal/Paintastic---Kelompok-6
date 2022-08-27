@@ -15,9 +15,30 @@ public class LevelManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI progressText;
 
+    public event System.Action<string> OnChangeScene;
+    public static LevelManager instance;
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        else
+        {
+            instance = this;
+        }
+    }
+
     public void LoadLevel(string sceneName)
     {
-        StartCoroutine(LoadAsynchronously(sceneName));
+        OnChangeScene?.Invoke(sceneName);
+        if (!(instance != null && instance != this))
+        {
+            StartCoroutine(LoadAsynchronously(sceneName));
+        }
+        
     }
 
     IEnumerator LoadAsynchronously(string sceneName)
