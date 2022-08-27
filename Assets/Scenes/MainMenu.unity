@@ -675,6 +675,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 281282490}
   m_CullTransparentMesh: 1
+--- !u!1 &344550559
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 344550560}
+  - component: {fileID: 344550562}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &344550560
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 344550559}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 21.585682, y: 1.6806755, z: 21.545197}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &344550562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 344550559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff1c136562d799f46b948a1c05221a2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  savedAudio: {fileID: 11400000, guid: 232623d88a0117044ac4032e4068361f, type: 2}
+  levelManager: {fileID: 1099093779}
 --- !u!1 &448353928
 GameObject:
   m_ObjectHideFlags: 0
@@ -687,6 +733,8 @@ GameObject:
   - component: {fileID: 448353932}
   - component: {fileID: 448353931}
   - component: {fileID: 448353930}
+  - component: {fileID: 448353933}
+  - component: {fileID: 448353934}
   m_Layer: 5
   m_Name: PlayButton
   m_TagString: Untagged
@@ -809,6 +857,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 448353928}
   m_CullTransparentMesh: 1
+--- !u!114 &448353933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 448353928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f72a60f3f5b8c340bf7fc321a66dd6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonChangeScene:
+  - {fileID: 448353934}
+  allButton:
+  - {fileID: 281282492}
+  - {fileID: 814345862}
+  - {fileID: 2047149358}
+  - {fileID: 448353930}
+--- !u!114 &448353934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 448353928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7c139f4ef9365f4cbe6c6ae4d945a2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 448353930}
+  sceneName: ColorSelection
 --- !u!1 &481410174
 GameObject:
   m_ObjectHideFlags: 0
