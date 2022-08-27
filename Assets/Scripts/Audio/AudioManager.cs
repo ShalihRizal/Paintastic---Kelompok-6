@@ -10,7 +10,6 @@ public class AudioManager : MonoBehaviour
 	[SerializeField]
 	ScritptableObjectAudio savedAudio;
 
-	//private string sceneName = "";
 	[SerializeField]
 	LevelManager levelManager;
 	public static AudioManager instance { get; private set;}
@@ -20,10 +19,6 @@ public class AudioManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         levelManager.OnChangeScene += CheckBGM;
     }
-    /*private void OnDisable()
-    {
-		levelManager.OnChangeScene -= CheckBGM;
-    }*/
     private void Awake()
 	{
 		if (instance != null && instance != this)
@@ -48,7 +43,7 @@ public class AudioManager : MonoBehaviour
 	private void InitializeAudio(Audio audio)
     {
 		audio.AudioSource.clip = audio.AudioClip;
-		audio.AudioSource.volume = 1.0f;
+		audio.AudioSource.volume = 0.6f;
 		audio.AudioSource.loop = audio.BgmOn;
 		audio.AudioSource.playOnAwake = false;
     }
@@ -80,6 +75,15 @@ public class AudioManager : MonoBehaviour
     }
 	public void PlaySfx(string sfxName)
     {
-
-    }
+		Audio searchSFX = System.Array.Find(audios, audio => audio.Name == sfxName && !audio.BgmOn && !audio.AudioSource.isPlaying);
+		if (searchSFX == null)
+        {
+			searchSFX = (Audio)System.Array.Find(savedAudio.GetAudio(), audio => audio.Name == sfxName);
+			InitializeAudio(searchSFX);
+			searchSFX.AudioSource.loop = false;
+			searchSFX.AudioSource.volume = 1.0f;
+			audios = audios.Concat(new Audio[] { searchSFX }).ToArray();
+        }
+		searchSFX.AudioSource.Play();
+	}
 }

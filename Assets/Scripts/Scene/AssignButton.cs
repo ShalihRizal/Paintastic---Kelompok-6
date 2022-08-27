@@ -6,18 +6,25 @@ using UnityEngine.UI;
 public class AssignButton : MonoBehaviour
 {
     [SerializeField]
-    Button button;
+    SceneButtonName[] buttonChangeScene;
+
     [SerializeField]
-    private string sceneName = "";
+    Button[] allButton;
+
 
     private void Start()
     {
-        button.onClick.RemoveAllListeners();
-        button.onClick.AddListener(OnClickEvent);
+        foreach (SceneButtonName buttonChange in buttonChangeScene)
+        {
+            buttonChange.button.onClick.RemoveAllListeners();
+            buttonChange.button.onClick.AddListener(buttonChange.OnClickEventChangeScene);
+        }
+        foreach (Button buttons in allButton)
+        {
+            buttons.onClick.AddListener(()=> AudioManager.instance.PlaySfx("SFX_ButtonClick"));
+        }
+        
+        
     }
 
-    private void OnClickEvent()
-    {
-        LevelManager.instance.LoadLevel(sceneName);
-    }
 }
