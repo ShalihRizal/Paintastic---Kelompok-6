@@ -14,5 +14,6 @@ public class BombItem : BaseCollectableObject
         {
             if (item.CompareTag(activator.tag)) item.ResetColor();
         }
+		AudioManager.instance.PlaySfx("SFX_Bomb");
     }
 }

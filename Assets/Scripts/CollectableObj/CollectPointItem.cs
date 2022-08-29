@@ -21,5 +21,6 @@ public class CollectPointItem : BaseCollectableObject
         }
 
         activator.SendMyScore(score);
+		AudioManager.instance.PlaySfx("SFX_CollectPoint");
     }
 }
