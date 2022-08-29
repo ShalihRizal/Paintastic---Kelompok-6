@@ -10,6 +10,7 @@ namespace Paintastic.GridSystem
 	{
 		public int gridHeight { get; private set; } = 8;
 		public int gridwidth { get; private set; } = 8;
+		[SerializeField]
 		private float gridSpaceSize = 3.1f;
 		//private int i = 0;
 
