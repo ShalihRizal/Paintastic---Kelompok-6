@@ -71,7 +71,9 @@ namespace Paintastic.Player
                 //transform.position = Vector3.Lerp(transform.position, new Vector3(path[current.x, current.y].position.x, transform.position.y, path[current.x, current.y].position.z), 1f);
                 transform.position = path[current.x,current.y].transform.position;
                 tmpTime = 0;
+                AudioManager.instance.PlaySfx("SFX_StepTiles");
             }
+            
         }
 
         public void PlayerDir(Vector2Int dir)
