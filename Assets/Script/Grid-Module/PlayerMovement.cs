@@ -61,14 +61,19 @@ namespace Paintastic.Player
             if (tmpTime > walkDelay)
             {
                 //if (current + target == anotherPlayer.GetPlayerPos()) return;
-                if (path[current.x+target.x, current.y+target.y].GetCellAvailablility()) return;
+                if (path[current.x + target.x, current.y + target.y].GetCellAvailablility()) return;
+                
                 current += target;
+                
+                path[current.x, current.y].SetCellAvailablility();
 
                 target = Vector2Int.zero;
                 //transform.position = Vector3.Lerp(transform.position, new Vector3(path[current.x, current.y].position.x, transform.position.y, path[current.x, current.y].position.z), 1f);
                 transform.position = path[current.x,current.y].transform.position;
                 tmpTime = 0;
+                AudioManager.instance.PlaySfx("SFX_StepTiles");
             }
+            
         }
 
         public void PlayerDir(Vector2Int dir)
