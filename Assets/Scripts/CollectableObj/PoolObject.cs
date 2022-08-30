@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Paintastic.Timer;
+using Paintastic.CollectibleObject;
 
 public class PoolObject : MonoBehaviour
 {
