@@ -37,8 +37,6 @@ public class PoolObject : MonoBehaviour
             InstantiateNewOne(_collectPointItem, _collectPointPool);
             InstantiateNewOne(_bombItem, _bombItemPool);
         }
-
-        SpawnObject();
     }
 
     private void InstantiateNewOne(BaseCollectableObject obj, List<BaseCollectableObject> pool)
@@ -46,20 +44,20 @@ public class PoolObject : MonoBehaviour
         BaseCollectableObject clone = Instantiate(obj);
         pool.Add(clone);
 
-        clone.InitInstantiate(_spawner.GetGrid());
+        clone.InitInstantiate(_spawner.GetGrid(), SpawnItemIfFieldEmpty);
     }
 
     private void SpawnObject()
     {
         BaseCollectableObject item = null;
-        switch (Random.Range(0, 2))
+        int r = Random.Range(0, 10);
+        if (r<3)
         {
-            case 0:
-                item = GetItem(_collectPointPool);
-                break;
-            case 1:
-                item = GetItem(_bombItemPool);
-                break;
+            item = GetItem(_bombItemPool);
+        }
+        else
+        {
+            item = GetItem(_collectPointPool);
         }
 
         if (item)
@@ -75,5 +73,20 @@ public class PoolObject : MonoBehaviour
         }
 
         return null;
+    }
+
+    private void SpawnItemIfFieldEmpty()
+    {
+        foreach (BaseCollectableObject obj in _collectPointPool)
+        {
+            if (obj.gameObject.activeInHierarchy) return;
+        }
+
+        foreach (BaseCollectableObject obj in _bombItemPool)
+        {
+            if (obj.gameObject.activeInHierarchy) return;
+        }
+
+        SpawnObject();
     }
 }

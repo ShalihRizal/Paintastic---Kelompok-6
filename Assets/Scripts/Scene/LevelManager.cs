@@ -38,7 +38,6 @@ public class LevelManager : MonoBehaviour
         {
             StartCoroutine(LoadAsynchronously(sceneName));
         }
-        
     }
 
     IEnumerator LoadAsynchronously(string sceneName)

@@ -47,3 +47,4 @@ MonoBehaviour:
   _name: MenuBGM
   audioClip: {fileID: 8300000, guid: e110584ea2a337e45a6bb8428e89c571, type: 3}
   bgmON: 1
+  typeAudio: BGM

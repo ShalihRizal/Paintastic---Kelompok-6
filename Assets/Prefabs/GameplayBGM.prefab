@@ -47,3 +47,4 @@ MonoBehaviour:
   _name: GameplayBGM
   audioClip: {fileID: 8300000, guid: 5ee38d6041438d2489430540f418de55, type: 3}
   bgmON: 1
+  typeAudio: BGM
