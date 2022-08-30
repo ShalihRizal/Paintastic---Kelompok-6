@@ -6269,9 +6269,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a78da3c4fcc121d44b00fe94cd358b30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collectPointItem: {fileID: -7445105274299394223, guid: 2ce57dc2687f6314cbfbd1ef7cd26b44, type: 3}
-  _bombItem: {fileID: -1599946904249036213, guid: ba0c8fcf9ad2e5843a634b111970281c, type: 3}
-  _size: 4
+  _collectPointItem: {fileID: 1111356438, guid: cafba045d95d94f4daa77355724c942c, type: 3}
+  _bombItem: {fileID: 1322604846, guid: 58785f1a56661e24b9c8995001a98778, type: 3}
+  _size: 10
 --- !u!4 &1365332954
 Transform:
   m_ObjectHideFlags: 0
