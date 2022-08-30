@@ -1689,8 +1689,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 317e02e1341b310408f208332e889009, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onMuteButtonSprite: {fileID: 1731716144, guid: be0002bc238bdc24fb115791404f29e7, type: 3}
-  onUnMuteButtonSprite: {fileID: 1041132717, guid: be0002bc238bdc24fb115791404f29e7, type: 3}
+  onMuteButtonSprite: {fileID: 1665426367, guid: 3c048d40e3a7ea6458006129ec5ddfbb, type: 3}
+  onUnMuteButtonSprite: {fileID: 645819142, guid: 3c048d40e3a7ea6458006129ec5ddfbb, type: 3}
   _bgmMixer: {fileID: 24100000, guid: 21f454aab1d54064080d26f6b716abd7, type: 2}
   _sfxMixer: {fileID: 24100000, guid: 4f383889fb2d0ff41a8cd3365b773685, type: 2}
   _muteButton: {fileID: 74170050}
