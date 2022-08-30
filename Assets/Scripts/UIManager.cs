@@ -9,11 +9,14 @@ using Paintastic.Timer;
 public class UIManager : MonoBehaviour
 {
 
-    [SerializeField]
+    /*[SerializeField]
     private TextMeshProUGUI player1ScoreText;
 
     [SerializeField]
-    private TextMeshProUGUI player2ScoreText;
+    private TextMeshProUGUI player2ScoreText;*/
+    
+    [SerializeField]
+    private TextMeshProUGUI[] playerScoreText;
 
     [SerializeField]
     private GameObject hud;
@@ -38,8 +41,12 @@ public class UIManager : MonoBehaviour
 
     private void OnScoreChanged()
     {
-        player1ScoreText.text = scoreManager.GetPlayer1Score().ToString();
-        player2ScoreText.text = scoreManager.GetPlayer2Score().ToString();
+        /*player1ScoreText.text = scoreManager.GetPlayer1Score().ToString();
+        player2ScoreText.text = scoreManager.GetPlayer2Score().ToString();*/
+        for(int i = 0; i < playerScoreText.Length; i++)
+        {
+            playerScoreText[i].text = scoreManager.GetPlayerScore(i).ToString();
+        }
     }
 
     void onTimesUp()
