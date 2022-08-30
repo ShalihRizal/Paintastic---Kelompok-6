@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44994187, g: 0.7550884, b: 0.8495337, a: 1}
+  m_IndirectSpecularColor: {r: 0.50482506, g: 0.84148496, b: 0.94658536, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1899,7 +1899,8 @@ MonoBehaviour:
   _bgmSlider: {fileID: 784935790}
   _sfxSlider: {fileID: 2112648862}
   _fullScreen: {fileID: 445691035}
-  resolutionDropdown: {fileID: 1064840095}
+  _resolutionDropdown: {fileID: 1064840095}
+  _qualityDropdown: {fileID: 189436690}
 --- !u!4 &634296746
 Transform:
   m_ObjectHideFlags: 0

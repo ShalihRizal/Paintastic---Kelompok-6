@@ -50,14 +50,14 @@ public class PoolObject : MonoBehaviour
     private void SpawnObject()
     {
         BaseCollectableObject item = null;
-        switch (Random.Range(0, 2))
+        int r = Random.Range(0, 10);
+        if (r<3)
         {
-            case 0:
-                item = GetItem(_collectPointPool);
-                break;
-            case 1:
-                item = GetItem(_bombItemPool);
-                break;
+            item = GetItem(_bombItemPool);
+        }
+        else
+        {
+            item = GetItem(_collectPointPool);
         }
 
         if (item)
