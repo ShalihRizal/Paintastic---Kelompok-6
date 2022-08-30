@@ -21,19 +21,22 @@ public class Result : MonoBehaviour
 
     void OnEnable()
     {
+        MatchHistory history = new MatchHistory();
         player1ScoreText.text = "Player 1 score : " + scoreManager.GetPlayer1Score().ToString();
         player2ScoreText.text = "Player 2 score : " + scoreManager.GetPlayer2Score().ToString();
-
         if (scoreManager.GetPlayer1Score() > scoreManager.GetPlayer2Score())
         {
             Time.timeScale = 0;
             playerWonText.text = "Player 1 Won";
+            history.OnPlayerWin("Player1");
         }
         else if (scoreManager.GetPlayer2Score() > scoreManager.GetPlayer1Score())
         {
             Time.timeScale = 0;
             playerWonText.text = "Player 2 Won";
-        }else
+            history.OnPlayerWin("Player2");
+        }
+        else
         {
             Time.timeScale = 0;
             playerWonText.text = "Draw !";
