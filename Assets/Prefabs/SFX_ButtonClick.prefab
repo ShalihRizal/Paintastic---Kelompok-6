@@ -47,3 +47,4 @@ MonoBehaviour:
   _name: SFX_ButtonClick
   audioClip: {fileID: 8300000, guid: 2695429a82516cc41acb4275ecc86703, type: 3}
   bgmON: 1
+  typeAudio: SFX

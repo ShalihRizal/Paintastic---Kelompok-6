@@ -10,7 +10,7 @@ public class SettingsManager : MonoBehaviour
 {
     public Action<SettingConfig> OnSaveConfig;
     public Action<SettingConfig> OnLoadConfig;
-
+    
     [Header("SoundSetting")]
     [SerializeField]
     private Sprite onMuteButtonSprite;
@@ -32,7 +32,8 @@ public class SettingsManager : MonoBehaviour
     private Toggle _fullScreen;
 
     [Header("Resolution")]
-    public TMP_Dropdown resolutionDropdown;
+    [SerializeField] private TMP_Dropdown _resolutionDropdown;
+    [SerializeField] private TMP_Dropdown _qualityDropdown;
     Resolution[] resolutions;
 
     private SettingConfig currentData;
@@ -49,15 +50,17 @@ public class SettingsManager : MonoBehaviour
 
     private void SetBGMVolume(float volume)
     {
-        _bgmMixer.SetFloat("Volume", volume);
+        _bgmMixer.SetFloat("Volume", ConvertFloatToVolume(volume));
         currentData.BgmVolume = volume;
     }
 
     private void SetSfXVolume(float volume)
     {
-        _sfxMixer.SetFloat("Volume", volume);
+        _sfxMixer.SetFloat("Volume", ConvertFloatToVolume(volume));
         currentData.SfxVolume = volume;
     }
+
+    private float ConvertFloatToVolume(float v) => Mathf.Log10(v) * 20;
 
     public void SetQuality(int qualityIndex)
     {
@@ -114,6 +117,8 @@ public class SettingsManager : MonoBehaviour
         _fullScreen.isOn = currentData.IsFullScreen;
         SetFullScreen(currentData.IsFullScreen);
 
+        _qualityDropdown.value = currentData.QualityIndex;
+
         _muteButton.onClick.AddListener(SetMute);
         _bgmSlider.onValueChanged.AddListener(SetBGMVolume);
         _sfxSlider.onValueChanged.AddListener(SetSfXVolume);
@@ -124,7 +129,7 @@ public class SettingsManager : MonoBehaviour
     {
         resolutions = Screen.resolutions;
 
-        resolutionDropdown.ClearOptions();
+        _resolutionDropdown.ClearOptions();
 
         List<string> options = new List<string>();
 
@@ -141,13 +146,14 @@ public class SettingsManager : MonoBehaviour
             }
         }
 
-        resolutionDropdown.AddOptions(options);
-        resolutionDropdown.value = currentResolutionIndex;
-        resolutionDropdown.RefreshShownValue();
+        _resolutionDropdown.AddOptions(options);
+        _resolutionDropdown.value = currentResolutionIndex;
     }
 
     private void SetMuteButtonSprite()
     {
+        AudioManager.instance.SetMute(currentData.IsMute);
+
         _muteButton.GetComponent<Image>().sprite =
             currentData.IsMute ? onMuteButtonSprite : onUnMuteButtonSprite;
     }

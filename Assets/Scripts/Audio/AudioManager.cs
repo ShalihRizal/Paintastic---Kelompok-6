@@ -15,9 +15,11 @@ public class AudioManager : MonoBehaviour
 	LevelManager levelManager;
 
 	[SerializeField]
-	private AudioMixer _bgmMixer;
+	private AudioMixerGroup _bgmMixer;
 	[SerializeField]
-	private AudioMixer _sfxMixer;
+	private AudioMixerGroup _sfxMixer;
+
+	private bool isMute = false;
 
 	public static AudioManager instance { get; private set;}
 
@@ -53,21 +55,32 @@ public class AudioManager : MonoBehaviour
 		audio.AudioSource.volume = 0.6f;
 		audio.AudioSource.loop = audio.BgmOn;
 		audio.AudioSource.playOnAwake = false;
+
+		switch (audio.TypeAudio)
+        {
+			case "BGM":
+				audio.AudioSource.outputAudioMixerGroup = _bgmMixer;
+				break;
+			case "SFX":
+				audio.AudioSource.outputAudioMixerGroup = _sfxMixer;
+				break;
+        }
     }
 	private void CheckBGM(string sceneName)
     {
-		
 		if (sceneName == "MainMenu")
         {
 			PlayBgm(savedAudio.MenuBGM);
         }
-		else if (sceneName == "ColorSelection")
+		else
         {
 			PlayBgm(savedAudio.GameplayBGM);
         }
     }
 	public void PlayBgm(string bgmName)
     {
+		if (isMute) return;
+
 		Audio searchBGM = System.Array.Find(audios, audio => audio.Name == bgmName && audio.BgmOn);
 
 		if (searchBGM?.AudioSource.isPlaying == true)
@@ -78,11 +91,12 @@ public class AudioManager : MonoBehaviour
         {
 			a.AudioSource.Stop();
         }
-		searchBGM.AudioSource.outputAudioMixerGroup = _bgmMixer.outputAudioMixerGroup;
 		searchBGM?.AudioSource.Play();
     }
 	public void PlaySfx(string sfxName)
     {
+		if (isMute) return;
+
 		Audio searchSFX = System.Array.Find(audios, audio => audio.Name == sfxName && !audio.BgmOn && !audio.AudioSource.isPlaying);
 		if (searchSFX == null)
         {
@@ -92,7 +106,17 @@ public class AudioManager : MonoBehaviour
 			searchSFX.AudioSource.volume = 1.0f;
 			audios = audios.Concat(new Audio[] { searchSFX }).ToArray();
         }
-		searchSFX.AudioSource.outputAudioMixerGroup = _sfxMixer.outputAudioMixerGroup;
 		searchSFX.AudioSource.Play();
+	}
+
+	public void SetMute(bool isMute)
+	{
+		this.isMute = isMute;
+
+		if (this.isMute)
+			foreach (Audio a in System.Array.FindAll(audios, audio => audio.BgmOn && audio.AudioSource.isPlaying))
+				a.AudioSource.Stop();
+		else
+			CheckBGM(SceneManager.GetActiveScene().name);
 	}
 }

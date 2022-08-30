@@ -47,3 +47,4 @@ MonoBehaviour:
   _name: SFX_StepTiles
   audioClip: {fileID: 8300000, guid: 7f6907c8ae33bfa41ac078fed1d544ff, type: 3}
   bgmON: 1
+  typeAudio: SFX
