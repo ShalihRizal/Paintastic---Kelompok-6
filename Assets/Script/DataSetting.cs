@@ -38,13 +38,13 @@ public class DataSetting : MonoBehaviour
 [System.Serializable]
 public class SettingConfig
 {
-    public float BgmVolume;
-    public float SfxVolume;
-    public bool IsMute;
+    public float BgmVolume = 20;
+    public float SfxVolume = 20;
+    public bool IsMute = false;
 
-    public int QualityIndex;
-    public int ResolutionIndex;
-    public bool IsFullScreen;
+    public int QualityIndex = 0;
+    public Vector2Int ScreenResolution;
+    public bool IsFullScreen = true;
 
     public bool isNewData = true;
     public bool isDoneLoad = false;
@@ -56,7 +56,7 @@ public class SettingConfig
         IsMute = data.IsMute;
 
         QualityIndex = data.QualityIndex;
-        ResolutionIndex = data.ResolutionIndex;
+        ScreenResolution = data.ScreenResolution;
         IsFullScreen = data.IsFullScreen;
 
         isNewData = data.isNewData;
