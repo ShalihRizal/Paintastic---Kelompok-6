@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
@@ -12,6 +13,12 @@ public class AudioManager : MonoBehaviour
 
 	[SerializeField]
 	LevelManager levelManager;
+
+	[SerializeField]
+	private AudioMixer _bgmMixer;
+	[SerializeField]
+	private AudioMixer _sfxMixer;
+
 	public static AudioManager instance { get; private set;}
 
     private void OnEnable()
@@ -71,6 +78,7 @@ public class AudioManager : MonoBehaviour
         {
 			a.AudioSource.Stop();
         }
+		searchBGM.AudioSource.outputAudioMixerGroup = _bgmMixer.outputAudioMixerGroup;
 		searchBGM?.AudioSource.Play();
     }
 	public void PlaySfx(string sfxName)
@@ -84,6 +92,7 @@ public class AudioManager : MonoBehaviour
 			searchSFX.AudioSource.volume = 1.0f;
 			audios = audios.Concat(new Audio[] { searchSFX }).ToArray();
         }
+		searchSFX.AudioSource.outputAudioMixerGroup = _sfxMixer.outputAudioMixerGroup;
 		searchSFX.AudioSource.Play();
 	}
 }

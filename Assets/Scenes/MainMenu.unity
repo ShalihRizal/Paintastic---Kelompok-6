@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.27940595, g: 0.49021518, b: 0.56009245, a: 1}
+  m_IndirectSpecularColor: {r: 0.4984507, g: 0.8315404, b: 0.93421257, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4951,6 +4951,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   savedAudio: {fileID: 11400000, guid: 232623d88a0117044ac4032e4068361f, type: 2}
   levelManager: {fileID: 1099093779}
+  _bgmMixer: {fileID: 24100000, guid: 21f454aab1d54064080d26f6b716abd7, type: 2}
+  _sfxMixer: {fileID: 24100000, guid: 4f383889fb2d0ff41a8cd3365b773685, type: 2}
 --- !u!1 &1475163920
 GameObject:
   m_ObjectHideFlags: 0

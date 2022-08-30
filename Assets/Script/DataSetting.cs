@@ -23,11 +23,15 @@ public class DataSetting : MonoBehaviour
     {
         data.isNewData = false;
         PlayerPrefs.SetString("SettingConfig", JsonUtility.ToJson(data));
+
+        Debug.Log("Xcute");
     }
 
     private void LoadSettingConfig(SettingConfig data)
     {
         string json = PlayerPrefs.GetString("SettingConfig");
+
+        Debug.Log(json);
         if (string.IsNullOrWhiteSpace(json))
             data.SetAllValue(new SettingConfig());
         else 

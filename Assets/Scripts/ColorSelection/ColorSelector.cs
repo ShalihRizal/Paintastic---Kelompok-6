@@ -113,10 +113,6 @@ namespace ColorSelection
         {
             return ToRGBHex(player2Color);
         }
-        private void Awake()
-        {
-            PlayerPrefs.DeleteAll();
-        }
     }
 }
 
