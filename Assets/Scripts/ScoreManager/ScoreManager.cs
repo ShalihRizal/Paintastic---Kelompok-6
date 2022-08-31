@@ -62,6 +62,7 @@ namespace Paintastic.ScoreManager
             }
             Debug.Log(player[0]+" and "+player[1]);
             OnScoreChanged?.Invoke();
+            OnKillfeed?.Invoke(arg1, arg2);
         }
 
         private void OnDisable()
