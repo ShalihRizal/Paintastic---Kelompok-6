@@ -17,6 +17,17 @@ namespace Paintastic.CollectibleObject
 
         //float animationTimer=0;
 
+        private GameObject _vfx;
+        private Collider _collider;
+        private MeshRenderer _renderer;
+
+        private void Start()
+        {
+            _vfx = transform.GetChild(0).gameObject;
+            _collider = GetComponent<Collider>();
+            _renderer = GetComponent<MeshRenderer>();
+        }
+
         void Update()
         {
             AnimateSequence();    
@@ -55,13 +66,7 @@ namespace Paintastic.CollectibleObject
         private void Activation(Player.Player subject)
         {
             ActiveEfect(_grid, subject);
-            SetDeActiveObject();
-        }
-
-        private void SetDeActiveObject()
-        {
-            DeActiveObject(this);
-            gameObject.SetActive(false);
+            StartCoroutine(SetDeactive());
         }
 
         public abstract void ActiveEfect(GridCell[,] _grid, Player.Player activator);
@@ -76,6 +81,23 @@ namespace Paintastic.CollectibleObject
                 animationTimer = 0;
             }
             animationTimer += Time.deltaTime;*/
+        }
+
+        private IEnumerator SetDeactive()
+        {
+            _vfx.SetActive(true);
+            _collider.enabled = false;
+            _renderer.enabled = false;
+
+            yield return new WaitForSeconds(2f);
+
+            gameObject.SetActive(false);
+
+            _vfx.SetActive(false);
+            _collider.enabled = true;
+            _renderer.enabled = true;
+
+            DeActiveObject(this);
         }
     }
 
