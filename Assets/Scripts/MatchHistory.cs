@@ -55,7 +55,7 @@ public class MatchHistory
     {
         string json = JsonUtility.ToJson(data);
         PlayerPrefs.SetString("SaveData", json);
-        //Debug.Log(json);
+        Debug.Log(json);
     }
     
     

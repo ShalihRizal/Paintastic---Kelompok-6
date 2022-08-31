@@ -30,7 +30,7 @@ public class Result : MonoBehaviour
             playerScoreText[i].text = "Player" + (i) + " score : " + scoreManager.GetPlayerScore(i).ToString();
         }
 
-        if (scoreManager.GetPlayerScore(0) > scoreManager.GetPlayerScore(1))
+        /*if (scoreManager.GetPlayerScore(0) > scoreManager.GetPlayerScore(1))
         {
             Time.timeScale = 0;
             playerWonText.text = "Player 1 Won";
@@ -46,9 +46,30 @@ public class Result : MonoBehaviour
         {
             Time.timeScale = 0;
             playerWonText.text = "Draw !";
+        }*/
+        
+        int highScore = scoreManager.GetPlayerScore().Max();
+        int highScoreIndex = scoreManager.GetPlayerScore().ToList().IndexOf(highScore);
+
+        int sameScore = 0;
+        foreach(int _playerScore in scoreManager.GetPlayerScore())
+        {
+            if(highScore == _playerScore)
+            {
+                sameScore += 1;
+            }
         }
-        /*int highScore = scoreManager.GetPlayerScore().Max();
-        int highScoreIndex = scoreManager.GetPlayerScore().ToList().IndexOf(highScore);*/
+
+        Time.timeScale = 0;
+        if (sameScore == 1)
+        {
+            playerWonText.text = "Player "+ (highScoreIndex + 1) +" Won";
+            history.OnPlayerWin("Player"+ (highScoreIndex + 1));
+        }
+        else
+        {
+            playerWonText.text = "Draw !";
+        }
 
     }
 }
