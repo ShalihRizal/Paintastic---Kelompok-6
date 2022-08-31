@@ -10,23 +10,17 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
 
-    /*[SerializeField]
+    [SerializeField]
     private TextMeshProUGUI player1ScoreText;
 
     [SerializeField]
-    private TextMeshProUGUI player2ScoreText;*/
+    private TextMeshProUGUI player2ScoreText;
 
     [SerializeField]
-    private TextMeshProUGUI[] playerScoreText;
-
-    /*[SerializeField]
     private Image player1ScoreBar;
 
     [SerializeField]
     private Image player2ScoreBar;
-    */
-    [SerializeField]
-    private Image[] playerScoreBar;
 
     [SerializeField]
     private GameObject hud;
@@ -41,60 +35,62 @@ public class UIManager : MonoBehaviour
     private GameObject pauseButton;
 
     [SerializeField]
+    private GameObject killfeedPanel;
+
+    [SerializeField]
+    private GameObject killfeedPrefab;
+
+    [SerializeField]
     Timer timer;
 
-    float fillamount;
+    public Action<string, int> OnScored;
 
-    private void Update()
+    private void OnEnable()
     {
         scoreManager.OnScoreChanged += OnScoreChanged;
         timer.OnTimesUp += onTimesUp;
+        scoreManager.OnKillfeed += AddKillFeed;
+    }
+
+    private void OnDisable()
+    {
+        scoreManager.OnScoreChanged -= OnScoreChanged;
+        timer.OnTimesUp -= onTimesUp;
+        scoreManager.OnKillfeed -= AddKillFeed;
     }
 
     private void OnScoreChanged()
     {
-        /*player1ScoreText.text = scoreManager.GetPlayer1Score().ToString();
-        player2ScoreText.text = scoreManager.GetPlayer2Score().ToString();*/
-        for (int i = 0; i < playerScoreText.Length; i++)
-        {
-            playerScoreText[i].text = scoreManager.GetPlayerScore(i).ToString();
-            playerScoreBar[i].fillAmount = (float) scoreManager.GetPlayerScore(i) / GetTotalScore();
-            
-        }
-        /*player1ScoreBar.fillAmount = scoreManager.GetPlayer1Score() / totalScore;
-        player2ScoreBar.fillAmount = scoreManager.GetPlayer2Score() / totalScore;*/
+
+        float totalScore = (float)scoreManager.GetPlayer1Score() + scoreManager.GetPlayer2Score();
+
+        player1ScoreText.text = scoreManager.GetPlayer1Score().ToString();
+        player2ScoreText.text = scoreManager.GetPlayer2Score().ToString();
+
+        player1ScoreBar.fillAmount = scoreManager.GetPlayer1Score() / totalScore;
+        player2ScoreBar.fillAmount = scoreManager.GetPlayer2Score() / totalScore;
+
     }
+
     private void Awake()
     {
         Color color;
 
-        for (int i = 1; i < playerScoreBar.Length + 1; i++)
-        {
-            ColorUtility.TryParseHtmlString(PlayerPrefs.GetString("Player" + i + "Color"), out color);
-            playerScoreBar[i - 1].color = color;
-        }
-
-        /*ColorUtility.TryParseHtmlString(PlayerPrefs.GetString("Player1Color"), out color);
+        ColorUtility.TryParseHtmlString(PlayerPrefs.GetString("Player1Color"), out color);
         player1ScoreBar.color = color;
 
         ColorUtility.TryParseHtmlString(PlayerPrefs.GetString("Player2Color"), out color);
-        player2ScoreBar.color = color;*/
+        player2ScoreBar.color = color;
 
     }
 
-    int GetTotalScore()
+    void AddKillFeed(string playerName, int score)
     {
-        int totalScore = 0;
-        for (int i = 0; i < playerScoreBar.Length; i++)
-        {
-            totalScore += scoreManager.GetPlayerScore(i);
-        }
-        return totalScore;
+        OnScored?.Invoke(playerName, score);
     }
 
     void onTimesUp()
     {
-
         hud.SetActive(false);
         pauseButton.gameObject.SetActive(false);
         resultScreen.SetActive(true);

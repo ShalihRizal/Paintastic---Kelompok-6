@@ -9,17 +9,31 @@ namespace Paintastic.CollectibleObject
 {
     public abstract class BaseCollectableObject : MonoBehaviour, ISpawnObject, IAnimateCollectible
     {
-        public Action<ISpawnObject> DeActiveObject { get; set; }
-        public Action AfterObjectInactive { get; set; }
-
+        public Action<ISpawnObject> DeActiveObject { get; set;  }
         public Action OnSpawnInField;
+
+        private Action OnObjectInactive;
 
         private Vector2Int v2;
         private GridCell[,] _grid;
 
+        //float animationTimer=0;
+
+        private GameObject _vfx;
+        private Collider _collider;
+        private MeshRenderer _renderer;
+
+        private void Start()
+        {
+            _vfx = transform.GetChild(0).gameObject;
+            _vfx.SetActive(false);
+            _collider = GetComponent<Collider>();
+            _renderer = GetComponent<MeshRenderer>();
+        }
+
         void Update()
         {
-            AnimateSequence();
+            AnimateSequence();    
         }
 
         private void OnTriggerEnter(Collider other)
@@ -31,11 +45,11 @@ namespace Paintastic.CollectibleObject
             }
         }
 
-        public void InitInstantiate(GridCell[,] grid, Action AfterDeactive)
+        public void InitInstantiate(GridCell[,] grid, Action onInactive)
         {
             _grid = grid;
-            AfterObjectInactive = AfterDeactive;
             gameObject.SetActive(false);
+            OnObjectInactive = onInactive;
         }
 
         public void SpawnObject(Vector2Int _pos, Transform _transform)
@@ -51,21 +65,13 @@ namespace Paintastic.CollectibleObject
             gameObject.SetActive(true);
         }
 
+        public Vector2Int GetCurrentPosition() => v2;
+
         private void Activation(Player.Player subject)
         {
             ActiveEfect(_grid, subject);
-            SetDeActiveObject();
+            StartCoroutine(SetDeactive());
         }
-
-        private void SetDeActiveObject()
-        {
-            DeActiveObject(this);
-            gameObject.SetActive(false);
-
-            AfterObjectInactive();
-        }
-
-        public Vector2Int GetCurrentPosition() => v2;
 
         public abstract void ActiveEfect(GridCell[,] _grid, Player.Player activator);
 
@@ -80,5 +86,23 @@ namespace Paintastic.CollectibleObject
             }
             animationTimer += Time.deltaTime;*/
         }
+
+        private IEnumerator SetDeactive()
+        {
+            _vfx.SetActive(true);
+            _collider.enabled = false;
+            _renderer.enabled = false;
+
+            yield return new WaitForSeconds(2f);
+
+            gameObject.SetActive(false);
+
+            _vfx.SetActive(false);
+            _collider.enabled = true;
+            _renderer.enabled = true;
+            OnObjectInactive();
+            DeActiveObject(this);
+        }
     }
+
 }
