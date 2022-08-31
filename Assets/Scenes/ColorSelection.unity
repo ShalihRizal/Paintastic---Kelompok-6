@@ -542,6 +542,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a3e5c84a2c16834f86d1dfac592299d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerColors:
+  - color: {r: 0.49803922, g: 0.68235296, b: 0.13725491, a: 1}
+    indexUnlock: 0
+  - color: {r: 0.6666667, g: 0.654902, b: 0.96862745, a: 1}
+    indexUnlock: 0
+  - color: {r: 1, g: 0.8745098, b: 0.6, a: 1}
+    indexUnlock: 0
+  - color: {r: 0, g: 0, b: 0, a: 1}
+    indexUnlock: 4
   player1ColorList:
   - '#7FAE23'
   - '#AAA7F7'

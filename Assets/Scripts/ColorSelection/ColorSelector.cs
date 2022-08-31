@@ -8,6 +8,8 @@ namespace ColorSelection
     public class ColorSelector : MonoBehaviour
     {
         [SerializeField]
+        UnlockColor[] playerColors;
+        [SerializeField]
         private List<string> player1ColorList = new List<string>();
 
         [SerializeField]
