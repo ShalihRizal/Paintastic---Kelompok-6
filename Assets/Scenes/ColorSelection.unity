@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68842536a134b2a46a0574bf0464327a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPlayerReady: 
+  isPlayerReady: 0000
   NextButton: {fileID: 419352290}
   colorSelector: {fileID: 169367294}
 --- !u!1 &38656283

@@ -143,7 +143,10 @@ namespace ColorSelection
                     temp[i] = playersData[i];
                 }
 
-                for(int j=playersData.Length-1; j<temp.Length; j++)
+                int startIdx = playersData.Length;
+                if (startIdx == 0) startIdx = 1;
+
+                for(int j=startIdx - 1; j<temp.Length; j++)
                 {
                     temp[j] = new PlayerData();
                     temp[j].id = "Player" + j;
