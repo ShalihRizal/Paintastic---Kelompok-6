@@ -16,12 +16,13 @@ namespace Paintastic.ScoreManager
         Player.Player player1Object;
         Player.Player player2Object;
 
-        [SerializeField] 
+        [SerializeField]
         Timer.Timer timer;
 
         [SerializeField] GameObject disableScore;
 
         public Action OnScoreChanged;
+        public Action<string, int> OnKillfeed;
 
         public void StartInit(Player.Player p1, Player.Player p2)
         {
@@ -50,6 +51,7 @@ namespace Paintastic.ScoreManager
             }
 
             OnScoreChanged?.Invoke();
+            OnKillfeed?.Invoke(arg1, arg2);
 
             Debug.Log(player1 + " and " + player2);
         }
