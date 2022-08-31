@@ -47,3 +47,4 @@ MonoBehaviour:
   _name: SFX_Bomb
   audioClip: {fileID: 8300000, guid: 1d82900dabd615a46b558181e1675254, type: 3}
   bgmON: 1
+  typeAudio: SFX

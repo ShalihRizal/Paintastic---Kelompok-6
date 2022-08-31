@@ -18,17 +18,6 @@ public class ReadyState : MonoBehaviour
     [SerializeField]
     ColorSelector colorSelector;
 
-    public void LoadScene(string sceneName)
-    {
-        if (isPlayer1Ready && isPlayer2Ready)
-        {
-            //Belum Modular
-            PlayerPrefs.SetString("Player1Color", colorSelector.GetPlayer1Color());
-            PlayerPrefs.SetString("Player2Color", colorSelector.GetPlayer2Color());
-            SceneManager.LoadScene(sceneName);
-        }
-    }
-
     public void ReadyPlayer1()
     {
         isPlayer1Ready = !isPlayer1Ready;
@@ -44,6 +33,8 @@ public class ReadyState : MonoBehaviour
         if (isPlayer1Ready && isPlayer2Ready)
         {
             NextButton.SetActive(true);
+            PlayerPrefs.SetString("Player1Color", colorSelector.GetPlayer1Color());
+            PlayerPrefs.SetString("Player2Color", colorSelector.GetPlayer2Color());
         }
     }
 }

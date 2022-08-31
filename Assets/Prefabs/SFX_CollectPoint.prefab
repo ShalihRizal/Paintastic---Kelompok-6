@@ -47,3 +47,4 @@ MonoBehaviour:
   _name: SFX_CollectPoint
   audioClip: {fileID: 8300000, guid: 0ca48b968011c314fa3e2a92eb1fc7c8, type: 3}
   bgmON: 1
+  typeAudio: SFX

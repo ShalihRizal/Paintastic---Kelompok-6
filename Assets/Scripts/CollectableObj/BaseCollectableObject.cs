@@ -9,17 +9,17 @@ namespace Paintastic.CollectibleObject
 {
     public abstract class BaseCollectableObject : MonoBehaviour, ISpawnObject, IAnimateCollectible
     {
-        public Action<ISpawnObject> DeActiveObject { get; set;  }
+        public Action<ISpawnObject> DeActiveObject { get; set; }
+        public Action AfterObjectInactive { get; set; }
+
         public Action OnSpawnInField;
 
         private Vector2Int v2;
         private GridCell[,] _grid;
 
-        //float animationTimer=0;
-
         void Update()
         {
-            AnimateSequence();    
+            AnimateSequence();
         }
 
         private void OnTriggerEnter(Collider other)
@@ -31,9 +31,10 @@ namespace Paintastic.CollectibleObject
             }
         }
 
-        public void InitInstantiate(GridCell[,] grid)
+        public void InitInstantiate(GridCell[,] grid, Action AfterDeactive)
         {
             _grid = grid;
+            AfterObjectInactive = AfterDeactive;
             gameObject.SetActive(false);
         }
 
@@ -50,8 +51,6 @@ namespace Paintastic.CollectibleObject
             gameObject.SetActive(true);
         }
 
-        public Vector2Int GetCurrentPosition() => v2;
-
         private void Activation(Player.Player subject)
         {
             ActiveEfect(_grid, subject);
@@ -62,7 +61,11 @@ namespace Paintastic.CollectibleObject
         {
             DeActiveObject(this);
             gameObject.SetActive(false);
+
+            AfterObjectInactive();
         }
+
+        public Vector2Int GetCurrentPosition() => v2;
 
         public abstract void ActiveEfect(GridCell[,] _grid, Player.Player activator);
 
@@ -78,5 +81,4 @@ namespace Paintastic.CollectibleObject
             animationTimer += Time.deltaTime;*/
         }
     }
-
 }

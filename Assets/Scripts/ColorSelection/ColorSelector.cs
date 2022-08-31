@@ -115,6 +115,12 @@ namespace ColorSelection
         {
             return ToRGBHex(player2Color);
         }
+
+        private void OnDestroy()
+        {
+            PlayerPrefs.SetString("Player1Color", ToRGBHex(player1Color));
+            PlayerPrefs.SetString("Player2Color", ToRGBHex(player2Color));
+        }
     }
 }
 
