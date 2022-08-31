@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.36603114, g: 0.23879951, b: 0.3874695, a: 1}
+  m_IndirectSpecularColor: {r: 0.51956385, g: 0.34678417, b: 0.5501555, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -646,6 +646,9 @@ MonoBehaviour:
   players:
   - {fileID: 2100388029}
   - {fileID: 287616614}
+  playerClass:
+  - {fileID: 2100388030}
+  - {fileID: 287616615}
   _gameGrid: {fileID: 1164048313}
   _spawner: {fileID: 1223812197}
   _pool: {fileID: 1365332953}
@@ -1585,6 +1588,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1990464b89b80c4f847626c442390d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &287616615 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4016432544692249780, guid: 992bddc6594d8314f8c5b9fe7f2113ae, type: 3}
+  m_PrefabInstance: {fileID: 287616613}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d4ab3e8f1f10994cbd2ec72c721a9e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &326665506
@@ -3374,8 +3388,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 317e02e1341b310408f208332e889009, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioMixer: {fileID: 24100000, guid: 3dc724c340ebaf740b354b897bad505d, type: 2}
-  resolutionDropdown: {fileID: 1823623337}
+  onMuteButtonSprite: {fileID: 0}
+  onUnMuteButtonSprite: {fileID: 0}
+  _bgmMixer: {fileID: 0}
+  _sfxMixer: {fileID: 0}
+  _muteButton: {fileID: 0}
+  _bgmSlider: {fileID: 0}
+  _sfxSlider: {fileID: 0}
+  _fullScreen: {fileID: 0}
+  _resolutionDropdown: {fileID: 0}
+  _qualityDropdown: {fileID: 0}
 --- !u!1 &619391025
 GameObject:
   m_ObjectHideFlags: 0
@@ -3607,10 +3629,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d20b59b635618b143a344bddd44bd5a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1ScoreText: {fileID: 784357724}
-  player2ScoreText: {fileID: 29358956}
-  player1ScoreBar: {fileID: 417339152}
-  player2ScoreBar: {fileID: 1103327222}
+  playerScoreText:
+  - {fileID: 784357724}
+  - {fileID: 29358956}
+  playerScoreBar:
+  - {fileID: 417339152}
+  - {fileID: 1103327222}
   hud: {fileID: 2087183009}
   scoreManager: {fileID: 1806536376}
   resultScreen: {fileID: 2102244242}
@@ -6779,8 +6803,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 317e02e1341b310408f208332e889009, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioMixer: {fileID: 24100000, guid: 3dc724c340ebaf740b354b897bad505d, type: 2}
-  resolutionDropdown: {fileID: 1823623337}
+  onMuteButtonSprite: {fileID: 0}
+  onUnMuteButtonSprite: {fileID: 0}
+  _bgmMixer: {fileID: 0}
+  _sfxMixer: {fileID: 0}
+  _muteButton: {fileID: 0}
+  _bgmSlider: {fileID: 0}
+  _sfxSlider: {fileID: 0}
+  _fullScreen: {fileID: 0}
+  _resolutionDropdown: {fileID: 0}
+  _qualityDropdown: {fileID: 0}
 --- !u!1 &1517204712
 GameObject:
   m_ObjectHideFlags: 0
@@ -9913,6 +9945,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1990464b89b80c4f847626c442390d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2100388030 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4016432544692249780, guid: 992bddc6594d8314f8c5b9fe7f2113ae, type: 3}
+  m_PrefabInstance: {fileID: 2100388028}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d4ab3e8f1f10994cbd2ec72c721a9e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2102244242
 GameObject:
   m_ObjectHideFlags: 0
@@ -10005,8 +10048,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreManager: {fileID: 1806536376}
-  player1ScoreText: {fileID: 587135231}
-  player2ScoreText: {fileID: 849664048}
+  playerScoreText:
+  - {fileID: 587135231}
+  - {fileID: 849664048}
   playerWonText: {fileID: 1054215070}
 --- !u!1 &2121229234
 GameObject:
