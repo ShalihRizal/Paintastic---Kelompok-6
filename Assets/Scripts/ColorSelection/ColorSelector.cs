@@ -124,9 +124,9 @@ namespace ColorSelection
 
         private void OnDestroy()
         {
-            for(int i=0; i<playerGetColor.Length; i++)
+            for(int i=1; i<playerGetColor.Length+1; i++)
             {
-                PlayerPrefs.SetString("Player"+i+"Color", ToRGBHex(playerGetColor[i]));
+                PlayerPrefs.SetString("Player"+i+"Color", ToRGBHex(playerGetColor[i-1]));
             }   
         }
 

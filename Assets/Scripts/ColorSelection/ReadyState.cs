@@ -37,10 +37,10 @@ public class ReadyState : MonoBehaviour
         if (IsAllPlayerReady())
         {
             NextButton.SetActive(true);
-            for(int i=0; i<isPlayerReady.Length; i++)
+            /*for(int i=0; i<isPlayerReady.Length; i++)
             {
                 PlayerPrefs.SetString("Player"+i+"Color", colorSelector.GetPlayerColor(i));
-            }
+            }*/
             
         }
     }

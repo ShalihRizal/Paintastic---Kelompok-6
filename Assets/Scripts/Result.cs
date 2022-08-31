@@ -27,7 +27,7 @@ public class Result : MonoBehaviour
         MatchHistory history = new MatchHistory();
         for(int i = 0; i < playerScoreText.Length; i++)
         {
-            playerScoreText[i].text = "Player" + (i) + " score : " + scoreManager.GetPlayerScore(i).ToString();
+            playerScoreText[i].text = "Player " + (i+1) + " score : " + scoreManager.GetPlayerScore(i).ToString();
         }
 
         /*if (scoreManager.GetPlayerScore(0) > scoreManager.GetPlayerScore(1))

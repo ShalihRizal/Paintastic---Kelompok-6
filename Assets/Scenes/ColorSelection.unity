@@ -548,8 +548,6 @@ MonoBehaviour:
     indexUnlock: 0
   - color: {r: 1, g: 0.8745098, b: 0.6, a: 1}
     indexUnlock: 0
-  - color: {r: 0, g: 0, b: 0, a: 1}
-    indexUnlock: 4
   - color: {r: 0.99215686, g: 0.68235296, b: 0.79607844, a: 1}
     indexUnlock: 0
   - color: {r: 0.99215686, g: 0.9764706, b: 0.9411765, a: 1}
@@ -558,8 +556,18 @@ MonoBehaviour:
     indexUnlock: 0
   - color: {r: 0.92941177, g: 0.85882354, b: 0.90588236, a: 1}
     indexUnlock: 0
+  - color: {r: 0, g: 0, b: 0, a: 1}
+    indexUnlock: 4
   - color: {r: 0.80784315, g: 0.2509804, b: 0.47843137, a: 1}
     indexUnlock: 4
+  - color: {r: 0.74509805, g: 0.13725491, b: 0.14901961, a: 1}
+    indexUnlock: 6
+  - color: {r: 0.9882353, g: 1, b: 0.23137255, a: 1}
+    indexUnlock: 6
+  - color: {r: 0.44705883, g: 1, b: 0.9843137, a: 1}
+    indexUnlock: 8
+  - color: {r: 0.7529412, g: 0.5294118, b: 0, a: 1}
+    indexUnlock: 8
   colorDisplay:
   - {fileID: 937788682}
   - {fileID: 578293902}
@@ -5815,8 +5823,8 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1309065946}
         m_TargetAssemblyTypeName: ReadyState, Assembly-CSharp
-        m_MethodName: ReadyPlayer1
-        m_Mode: 1
+        m_MethodName: ReadyPlayer
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -6973,12 +6981,12 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1309065946}
         m_TargetAssemblyTypeName: ReadyState, Assembly-CSharp
-        m_MethodName: ReadyPlayer2
-        m_Mode: 1
+        m_MethodName: ReadyPlayer
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
