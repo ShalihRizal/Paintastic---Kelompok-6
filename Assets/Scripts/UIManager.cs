@@ -43,6 +43,8 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     Timer timer;
 
+    float fillamount;
+
     private void Update()
     {
         scoreManager.OnScoreChanged += OnScoreChanged;
@@ -56,7 +58,8 @@ public class UIManager : MonoBehaviour
         for (int i = 0; i < playerScoreText.Length; i++)
         {
             playerScoreText[i].text = scoreManager.GetPlayerScore(i).ToString();
-            playerScoreBar[i].fillAmount = scoreManager.GetPlayerScore(i) / GetTotalScore();
+            playerScoreBar[i].fillAmount = (float) scoreManager.GetPlayerScore(i) / GetTotalScore();
+            
         }
         /*player1ScoreBar.fillAmount = scoreManager.GetPlayer1Score() / totalScore;
         player2ScoreBar.fillAmount = scoreManager.GetPlayer2Score() / totalScore;*/
@@ -65,10 +68,10 @@ public class UIManager : MonoBehaviour
     {
         Color color;
 
-        for(int i = 0; i < playerScoreBar.Length; i++)
+        for (int i = 1; i < playerScoreBar.Length + 1; i++)
         {
             ColorUtility.TryParseHtmlString(PlayerPrefs.GetString("Player" + i + "Color"), out color);
-            playerScoreBar[i].color = color;
+            playerScoreBar[i - 1].color = color;
         }
 
         /*ColorUtility.TryParseHtmlString(PlayerPrefs.GetString("Player1Color"), out color);
@@ -81,8 +84,8 @@ public class UIManager : MonoBehaviour
 
     int GetTotalScore()
     {
-        int totalScore=0;
-        for(int i = 0; i < playerScoreBar.Length; i++)
+        int totalScore = 0;
+        for (int i = 0; i < playerScoreBar.Length; i++)
         {
             totalScore += scoreManager.GetPlayerScore(i);
         }
