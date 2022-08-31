@@ -12,6 +12,8 @@ namespace Paintastic.CollectibleObject
         public Action<ISpawnObject> DeActiveObject { get; set;  }
         public Action OnSpawnInField;
 
+        private Action OnObjectInactive;
+
         private Vector2Int v2;
         private GridCell[,] _grid;
 
@@ -43,10 +45,11 @@ namespace Paintastic.CollectibleObject
             }
         }
 
-        public void InitInstantiate(GridCell[,] grid)
+        public void InitInstantiate(GridCell[,] grid, Action onInactive)
         {
             _grid = grid;
             gameObject.SetActive(false);
+            OnObjectInactive = onInactive;
         }
 
         public void SpawnObject(Vector2Int _pos, Transform _transform)
@@ -97,7 +100,7 @@ namespace Paintastic.CollectibleObject
             _vfx.SetActive(false);
             _collider.enabled = true;
             _renderer.enabled = true;
-
+            OnObjectInactive();
             DeActiveObject(this);
         }
     }
