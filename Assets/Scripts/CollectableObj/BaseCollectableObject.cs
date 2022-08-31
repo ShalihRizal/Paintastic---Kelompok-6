@@ -24,6 +24,7 @@ namespace Paintastic.CollectibleObject
         private void Start()
         {
             _vfx = transform.GetChild(0).gameObject;
+            _vfx.SetActive(false);
             _collider = GetComponent<Collider>();
             _renderer = GetComponent<MeshRenderer>();
         }
