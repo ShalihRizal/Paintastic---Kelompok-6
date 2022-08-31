@@ -35,12 +35,28 @@ public class UIManager : MonoBehaviour
     private GameObject pauseButton;
 
     [SerializeField]
+    private GameObject killfeedPanel;
+
+    [SerializeField]
+    private GameObject killfeedPrefab;
+
+    [SerializeField]
     Timer timer;
 
-    private void Update()
+    public Action<string, int> OnScored;
+
+    private void OnEnable()
     {
         scoreManager.OnScoreChanged += OnScoreChanged;
         timer.OnTimesUp += onTimesUp;
+        scoreManager.OnKillfeed += AddKillFeed;
+    }
+
+    private void OnDisable()
+    {
+        scoreManager.OnScoreChanged -= OnScoreChanged;
+        timer.OnTimesUp -= onTimesUp;
+        scoreManager.OnKillfeed -= AddKillFeed;
     }
 
     private void OnScoreChanged()
@@ -53,6 +69,7 @@ public class UIManager : MonoBehaviour
 
         player1ScoreBar.fillAmount = scoreManager.GetPlayer1Score() / totalScore;
         player2ScoreBar.fillAmount = scoreManager.GetPlayer2Score() / totalScore;
+
     }
 
     private void Awake()
@@ -67,9 +84,13 @@ public class UIManager : MonoBehaviour
 
     }
 
+    void AddKillFeed(string playerName, int score)
+    {
+        OnScored?.Invoke(playerName, score);
+    }
+
     void onTimesUp()
     {
-
         hud.SetActive(false);
         pauseButton.gameObject.SetActive(false);
         resultScreen.SetActive(true);
