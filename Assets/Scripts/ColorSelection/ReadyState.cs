@@ -8,9 +8,7 @@ using ColorSelection;
 public class ReadyState : MonoBehaviour
 {
     [SerializeField]
-    private bool isPlayer1Ready = false;
-    [SerializeField]
-    private bool isPlayer2Ready = false;
+    private bool[] isPlayerReady;
 
     [SerializeField]
     private GameObject NextButton;
@@ -18,23 +16,32 @@ public class ReadyState : MonoBehaviour
     [SerializeField]
     ColorSelector colorSelector;
 
-    public void ReadyPlayer1()
+    public void ReadyPlayer(int index)
     {
-        isPlayer1Ready = !isPlayer1Ready;
+        isPlayerReady[index] = !isPlayerReady[index];
+        CheckCanStart();
     }
-
-    public void ReadyPlayer2()
+    private bool IsAllPlayerReady()
     {
-        isPlayer2Ready = !isPlayer2Ready;
+        foreach(bool player in isPlayerReady)
+        {
+            if(!player)
+            {
+                return false;
+            }
+        }
+        return true;
     }
-
-    private void Update()
+    private void CheckCanStart()
     {
-        if (isPlayer1Ready && isPlayer2Ready)
+        if (IsAllPlayerReady())
         {
             NextButton.SetActive(true);
-            PlayerPrefs.SetString("Player1Color", colorSelector.GetPlayer1Color());
-            PlayerPrefs.SetString("Player2Color", colorSelector.GetPlayer2Color());
+            for(int i=0; i<isPlayerReady.Length; i++)
+            {
+                PlayerPrefs.SetString("Player"+i+"Color", colorSelector.GetPlayerColor(i));
+            }
+            
         }
     }
 }

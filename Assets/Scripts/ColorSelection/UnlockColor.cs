@@ -5,8 +5,6 @@ using UnityEngine;
 [System.Serializable]
 public struct UnlockColor
 {
-    [SerializeField]
-    Color color;
-    [SerializeField]
-    int indexUnlock;
+    public Color color;
+    public int indexUnlock;
 }
