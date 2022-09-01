@@ -25,6 +25,7 @@ public class Result : MonoBehaviour
     void OnEnable()
     {
         MatchHistory history = new MatchHistory();
+        MatchRecordManager matchRecordManager = new MatchRecordManager();
         for(int i = 0; i < playerScoreText.Length; i++)
         {
             playerScoreText[i].text = "Player " + (i+1) + " score : " + scoreManager.GetPlayerScore(i).ToString();
@@ -50,12 +51,21 @@ public class Result : MonoBehaviour
             int[] index = scoreManager.GetPlayerScore();
             string[] dataPlayer = new string[index.Length];
 
+            string[] playerscolor = new string[scoreManager.GetPlayerScore().Length];
+            string[] playersID = new string[scoreManager.GetPlayerScore().Length];
+
             for(int i=0; i<index.Length; i++)
             {
                 dataPlayer[i] = "Player" + (i + 1);
                 Debug.Log(dataPlayer[i]);
             }
+            for(int i=0; i<playerscolor.Length; i++)
+            {
+                playersID[i] = "Player" + (i + 1);
+                playerscolor[i] = PlayerPrefs.GetString(playersID[i] + "Color");
+            }
             history.PlayerRecord(dataPlayer, "Player"+ (highScoreIndex + 1));
+            matchRecordManager.RecordMatch(playersID, scoreManager.GetPlayerScore(), playerscolor);
         }
         else
         {
