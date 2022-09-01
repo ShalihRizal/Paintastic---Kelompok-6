@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a7e0b26a2081a641b60308ae7e6bf1a, type: 3}
+  m_Name: PlayerMaterialProp
+  m_EditorClassIdentifier: 
+  materialProperty:
+  - propertyId: 0
+    indexUnlock: 0
+    color: {r: 0.49803922, g: 0.68235296, b: 0.13725491, a: 0}
+    baseMap: {fileID: 0}
+    metallic: 0
+    smoothness: 0
+  - propertyId: 1
+    indexUnlock: 0
+    color: {r: 0.6666667, g: 0.654902, b: 0.96862745, a: 0}
+    baseMap: {fileID: 0}
+    metallic: 0
+    smoothness: 0
+  - propertyId: 2
+    indexUnlock: 0
+    color: {r: 1, g: 0.8745098, b: 0.6, a: 0}
+    baseMap: {fileID: 0}
+    metallic: 0
+    smoothness: 0
+  - propertyId: 3
+    indexUnlock: 0
+    color: {r: 0.99215686, g: 0.68235296, b: 0.79607844, a: 0}
+    baseMap: {fileID: 0}
+    metallic: 0
+    smoothness: 0
+  - propertyId: 4
+    indexUnlock: 0
+    color: {r: 0.99215686, g: 0.9764706, b: 0.9411765, a: 0}
+    baseMap: {fileID: 0}
+    metallic: 0
+    smoothness: 0
+  - propertyId: 5
+    indexUnlock: 0
+    color: {r: 0.99607843, g: 0.87058824, b: 0.827451, a: 0}
+    baseMap: {fileID: 0}
+    metallic: 0
+    smoothness: 0
+  - propertyId: 6
+    indexUnlock: 0
+    color: {r: 0.92941177, g: 0.85882354, b: 0.90588236, a: 0}
+    baseMap: {fileID: 0}
+    metallic: 0
+    smoothness: 0
+  - propertyId: 7
+    indexUnlock: 4
+    color: {r: 0, g: 0, b: 0, a: 0}
+    baseMap: {fileID: 0}
+    metallic: 0
+    smoothness: 0
+  - propertyId: 8
+    indexUnlock: 4
+    color: {r: 0.80784315, g: 0.2509804, b: 0.47843137, a: 0}
+    baseMap: {fileID: 0}
+    metallic: 0
+    smoothness: 0
+  - propertyId: 9
+    indexUnlock: 6
+    color: {r: 0.74509805, g: 0.13725491, b: 0.14901961, a: 0}
+    baseMap: {fileID: 0}
+    metallic: 0
+    smoothness: 0
+  - propertyId: 10
+    indexUnlock: 6
+    color: {r: 0.9882353, g: 1, b: 0.23137255, a: 0}
+    baseMap: {fileID: 0}
+    metallic: 0
+    smoothness: 0
+  - propertyId: 11
+    indexUnlock: 8
+    color: {r: 0.44705883, g: 1, b: 0.9843137, a: 0}
+    baseMap: {fileID: 0}
+    metallic: 0
+    smoothness: 0
+  - propertyId: 12
+    indexUnlock: 8
+    color: {r: 0.7529412, g: 0.5294118, b: 0, a: 0}
+    baseMap: {fileID: 0}
+    metallic: 0
+    smoothness: 0

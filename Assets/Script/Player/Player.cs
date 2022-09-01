@@ -8,12 +8,14 @@ namespace Paintastic.Player
     {
         public event System.Action<Material, string> OnCollideWithGrid;
         public event System.Action<string, int> OnSendScore;
-        [SerializeField] private Material playerMaterial;
         [SerializeField] private GameObject playerObject;
+        //private PlayerMaterialBlock playerMaterialBlock;
+        private Material playerMaterial;
 
         private float timeBetweenCollectPoint = 10;
         private void Awake()
         {
+            playerMaterial = playerObject.GetComponent<MeshRenderer>().material;
             Color color;
 
             if (!string.IsNullOrWhiteSpace(PlayerPrefs.GetString(gameObject.tag + "Color")))
