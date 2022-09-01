@@ -19,16 +19,23 @@ namespace ColorSelection
         private UnlockColor[] baseColor;
         private int[] index;
         private PlayerData[] playersData;
+        private int[] levelPlayers;
 
         private void Start()
         {
             LoadDataPlayer();
+            index = new int[playerGetColor.Length];
+            levelPlayers = new int[index.Length];
+            for (int i = 0; i < index.Length; i++)
+            {
+                levelPlayers[i] = GetPlayerFromData("Player" + (i + 1)).LevelCounter(500);
+            }
+
             baseColor = new UnlockColor[playerColors.Count];
             for (int i = 0; i < playerColors.Count; i++)
             {
                 baseColor[i] = playerColors[i];
             }
-            index = new int[playerGetColor.Length];
 
             for (int i = 0; i < playerGetColor.Length; i++)
             {
@@ -58,12 +65,12 @@ namespace ColorSelection
                 index[indexPlayer] = 0;
             }
 
-
-            if (playerColors[index[indexPlayer]].indexUnlock > GetPlayerFromData("Player" + (indexPlayer + 1)).LevelCounter(500))
+            if (playerColors[index[indexPlayer]].indexUnlock > levelPlayers[indexPlayer])
             {
                 SetPlayerColor(indexPlayer);
                 return;
             }
+
             BackToList(playerGetColor[indexPlayer]);
             ColorUtility.TryParseHtmlString(ToRGBHex(playerColors[index[indexPlayer]].color), out playerGetColor[indexPlayer]);
             colorDisplay[indexPlayer].color = playerGetColor[indexPlayer];
