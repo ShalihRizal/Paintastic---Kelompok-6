@@ -21,7 +21,6 @@ namespace Paintastic.GridSystem
                 OnCollectPointPicked?.Invoke(collision.gameObject);
                 collision.transform.root.gameObject.GetComponent<Player.Player>().OnCollideWithGrid += OnCollideWithGrid;
             }
-            //gameObject.GetComponent<GridCell>().SetCellAvailablility();
         }
         private void OnCollisionExit(Collision collision)
         {

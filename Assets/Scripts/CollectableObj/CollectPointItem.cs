@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Paintastic.Player;
+using Paintastic.GridSystem;
+using Paintastic.Audio;
 
 namespace Paintastic.CollectibleObject
 {
@@ -13,8 +15,6 @@ namespace Paintastic.CollectibleObject
             int score = 0;
             foreach (GridCell go in _grids)
             {
-                //kirim score
-                //reset warna
                 if (go.CompareTag(activator.tag))
                 {
                     score += 1;

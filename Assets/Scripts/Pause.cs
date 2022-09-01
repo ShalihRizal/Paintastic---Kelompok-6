@@ -3,36 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
-public class Pause : MonoBehaviour
+namespace Paintastic.Pause
 {
-    public Button pauseButton;
-
-    public Button ResumeButton;
-
-    [SerializeField]
-    bool isPaused = false;
-
-    private void Start()
+    public class Pause : MonoBehaviour
     {
-        pauseButton.onClick.RemoveAllListeners();
-        pauseButton.onClick.AddListener(PauseGame);
+        public Button pauseButton;
 
-        ResumeButton.onClick.RemoveAllListeners();
-        ResumeButton.onClick.AddListener(PauseGame);
-    }
+        public Button ResumeButton;
 
-    void PauseGame()
-    {
-        if (!isPaused)
+        [SerializeField]
+        bool isPaused = false;
+
+        private void Start()
         {
-            isPaused = !isPaused;
-            Time.timeScale = 0;
+            pauseButton.onClick.RemoveAllListeners();
+            pauseButton.onClick.AddListener(PauseGame);
+
+            ResumeButton.onClick.RemoveAllListeners();
+            ResumeButton.onClick.AddListener(PauseGame);
         }
-        else
+
+        void PauseGame()
         {
-            isPaused = !isPaused;
-            Time.timeScale = 1;
+            if (!isPaused)
+            {
+                isPaused = !isPaused;
+                Time.timeScale = 0;
+            }
+            else
+            {
+                isPaused = !isPaused;
+                Time.timeScale = 1;
+            }
         }
     }
 }

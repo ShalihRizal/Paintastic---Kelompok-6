@@ -5,62 +5,63 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
-public class LevelManager : MonoBehaviour
+namespace Paintastic.LevelManager
 {
-
-    [SerializeField]
-    private GameObject loadingScreen;
-    [SerializeField]
-    private Slider loadingBar;
-    [SerializeField]
-    private TextMeshProUGUI progressText;
-
-    public event System.Action<string> OnChangeScene;
-    public static LevelManager instance;
-    private void Awake()
+    public class LevelManager : MonoBehaviour
     {
-        DontDestroyOnLoad(gameObject);
-        if (instance != null && instance != this)
+
+        [SerializeField]
+        private GameObject loadingScreen;
+        [SerializeField]
+        private Slider loadingBar;
+        [SerializeField]
+        private TextMeshProUGUI progressText;
+
+        public event System.Action<string> OnChangeScene;
+        public static LevelManager instance;
+        private void Awake()
         {
-            Destroy(gameObject);
-            return;
+            DontDestroyOnLoad(gameObject);
+            if (instance != null && instance != this)
+            {
+                Destroy(gameObject);
+                return;
+            }
+            else
+            {
+                instance = this;
+            }
         }
-        else
+
+        public void LoadLevel(string sceneName)
         {
-            instance = this;
+            OnChangeScene?.Invoke(sceneName);
+            if (!(instance != null && instance != this))
+            {
+                StartCoroutine(LoadAsynchronously(sceneName));
+            }
+        }
+
+        IEnumerator LoadAsynchronously(string sceneName)
+        {
+            AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
+
+            loadingScreen.SetActive(true);
+
+            while (!operation.isDone)
+            {
+                float progress = Mathf.Clamp01(operation.progress / .9f);
+
+                loadingBar.value = progress;
+                progressText.text = progress * 100f + "%";
+
+                yield return null;
+            }
+        }
+
+        public void Quit()
+        {
+            Application.Quit();
         }
     }
-
-    public void LoadLevel(string sceneName)
-    {
-        OnChangeScene?.Invoke(sceneName);
-        if (!(instance != null && instance != this))
-        {
-            StartCoroutine(LoadAsynchronously(sceneName));
-        }
-    }
-
-    IEnumerator LoadAsynchronously(string sceneName)
-    {
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
-
-        loadingScreen.SetActive(true);
-
-        while (!operation.isDone)
-        {
-            float progress = Mathf.Clamp01(operation.progress / .9f);
-
-            loadingBar.value = progress;
-            progressText.text = progress * 100f + "%";
-
-            yield return null;
-        }
-    }
-
-    public void Quit()
-    {
-        Application.Quit();
-    }
-
-
 }

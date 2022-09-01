@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Paintastic.GridSystem;
 using Paintastic.Player;
+using Paintastic.Spawner;
 
 namespace Paintastic.CollectibleObject
 {
@@ -16,8 +17,6 @@ namespace Paintastic.CollectibleObject
 
         private Vector2Int v2;
         private GridCell[,] _grid;
-
-        //float animationTimer=0;
 
         private GameObject _vfx;
         private Collider _collider;
@@ -78,13 +77,6 @@ namespace Paintastic.CollectibleObject
         public void AnimateSequence()
         {
             transform.Rotate(0, Time.deltaTime * 50, 0, Space.World);
-            /*if (animationTimer > 1)
-            {
-                Debug.Log(animationTimer);
-                GetComponent<Rigidbody>().AddForce(0, 100f, 0);
-                animationTimer = 0;
-            }
-            animationTimer += Time.deltaTime;*/
         }
 
         private IEnumerator SetDeactive()

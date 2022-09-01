@@ -18,7 +18,6 @@ namespace Paintastic.Player
 
             if (!string.IsNullOrWhiteSpace(PlayerPrefs.GetString(gameObject.tag + "Color")))
             {
-                //Debug.Log(PlayerPrefs.GetString(gameObject.tag + "Color"));
                 ColorUtility.TryParseHtmlString(PlayerPrefs.GetString(gameObject.tag + "Color"), out color);
                 playerMaterial.color = color;
             }

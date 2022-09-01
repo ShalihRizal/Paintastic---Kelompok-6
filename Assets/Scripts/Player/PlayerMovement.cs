@@ -1,4 +1,6 @@
+using Paintastic.Audio;
 using Paintastic.GridSystem;
+using Paintastic.Spawner;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,30 +18,6 @@ namespace Paintastic.Player
         private float walkDelay = .15f, tmpTime = 0;
 
         public Action<ISpawnObject> DeActiveObject { get; set; }
-
-        /*public void SetInit(PlayerController anotherPlayer, GameObject[,] path, Vector2Int spawnPoint)
-        {
-            for (int i = 0; i < path.GetLength(0); i++)
-            {
-                for (int j = 0; j < path.GetLength(1); j++)
-                {
-                    this.gameGrid[i, j] = path[i, j].transform;
-                }
-            }
-            current = spawnPoint;
-
-            transform.position = this.path[current.x, current.y].transform.position;
-            //transform.position = new Vector3(this.path[current.x, current.y].position.x, 10f, this.path[current.x, current.y].position.y);
-        }*/
-
-        /*public void SetInit(GameObject player, GameObject[,] grid, Vector2Int spawnPoint)
-        {
-            Vector3 bottomLeft = grid[0,0].transform.position;
-            Vector3 bottomRight = grid[0, grid.Length-1].transform.position;
-            Vector3 topLeft = grid[grid.Length - 1, 0].transform.position;
-            Vector3 topRight = grid[grid.Length - 1, grid.Length - 1].transform.position;
-
-        }*/
 
         public void StartInit(GridCell[,] _path, Vector2Int _pos)
         {
@@ -60,7 +38,6 @@ namespace Paintastic.Player
             tmpTime += Time.deltaTime;
             if (tmpTime > walkDelay)
             {
-                //if (current + target == anotherPlayer.GetPlayerPos()) return;
                 if (path[current.x + target.x, current.y + target.y].GetCellAvailablility()) return;
                 
                 current += target;
@@ -68,7 +45,6 @@ namespace Paintastic.Player
                 path[current.x, current.y].SetCellAvailablility();
 
                 target = Vector2Int.zero;
-                //transform.position = Vector3.Lerp(transform.position, new Vector3(path[current.x, current.y].position.x, transform.position.y, path[current.x, current.y].position.z), 1f);
                 transform.position = path[current.x,current.y].transform.position;
                 tmpTime = 0;
                 AudioManager.instance.PlaySfx("SFX_StepTiles");

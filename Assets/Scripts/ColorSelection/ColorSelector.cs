@@ -1,9 +1,10 @@
+using Paintastic.MatchHistory;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ColorSelection
+namespace Paintastic.ColorSelection
 {
     public class ColorSelector : MonoBehaviour
     {
@@ -108,7 +109,7 @@ namespace ColorSelection
 
         private void LoadDataPlayer()
         {
-            MatchHistory history = new MatchHistory();
+            MatchHistory.MatchHistory history = new MatchHistory.MatchHistory();
             playersData = history.LoadData();
 
             if (playersData.Length < playerGetColor.Length)
