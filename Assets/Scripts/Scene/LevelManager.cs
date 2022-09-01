@@ -20,6 +20,7 @@ public class LevelManager : MonoBehaviour
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
+
         if (instance != null && instance != this)
         {
             Destroy(gameObject);
@@ -55,6 +56,8 @@ public class LevelManager : MonoBehaviour
 
             yield return null;
         }
+        loadingScreen.SetActive(false);
+        Debug.Log("Jalannnn");
     }
 
     public void Quit()

@@ -40,7 +40,6 @@ public class MatchRecordUI : MonoBehaviour
 
             Color color = Color.white;
 
-
             if (winnerIndex >= 0)
             { 
                 ColorUtility.TryParseHtmlString(matchData.MatchRecord[i].playersColor[winnerIndex], out color);
@@ -51,12 +50,12 @@ public class MatchRecordUI : MonoBehaviour
 
             for (int j = 0; j < matchData.MatchRecord[i].playersID.Length - 1; j++)
             {
-                playerString += matchData.MatchRecord[i].playersID[j] + " Vs ";
-                playerScore += matchData.MatchRecord[i].playersScore[j] + " - ";
+                playerString += "<" + matchData.MatchRecord[i].playersColor[j] + ">" + matchData.MatchRecord[i].playersID[j] + "<#515151> Vs ";
+                playerScore += "<" + matchData.MatchRecord[i].playersColor[j] + ">" + matchData.MatchRecord[i].playersScore[j] + "<#515151> - ";
             }
 
-            playerString += matchData.MatchRecord[i].playersID[matchData.MatchRecord[i].playersID.Length - 1];
-            playerScore += matchData.MatchRecord[i].playersScore[matchData.MatchRecord[i].playersScore.Length - 1];
+            playerString += "<" + matchData.MatchRecord[i].playersColor[matchData.MatchRecord[i].playersID.Length - 1] + ">" + matchData.MatchRecord[i].playersID[matchData.MatchRecord[i].playersID.Length - 1];
+            playerScore += "<" + matchData.MatchRecord[i].playersColor[matchData.MatchRecord[i].playersID.Length - 1] + ">" + matchData.MatchRecord[i].playersScore[matchData.MatchRecord[i].playersScore.Length - 1];
 
             parent.GetChild(i).GetChild(0).GetComponent<Image>().color = color;
             parent.GetChild(i).GetChild(1).GetComponent<Image>().color = color;

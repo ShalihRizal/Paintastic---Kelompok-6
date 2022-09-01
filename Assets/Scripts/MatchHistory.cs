@@ -39,6 +39,7 @@ public class MatchHistory
             if (players[i].id == winnerId)
             {
                 players[i].winCount += 1;
+                break;
             }
         }
 
