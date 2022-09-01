@@ -27,19 +27,19 @@ namespace ColorSelection
         {
             LoadDataPlayer();
             baseColor = new UnlockColor[playerColors.Count];
-            for (int i=0; i<playerColors.Count; i++)
+            for (int i = 0; i < playerColors.Count; i++)
             {
                 baseColor[i] = playerColors[i];
             }
-            index = new int[playerGetColor.Length]; 
+            index = new int[playerGetColor.Length];
 
-            for (int i=0; i<playerGetColor.Length; i++)
+            for (int i = 0; i < playerGetColor.Length; i++)
             {
                 ColorUtility.TryParseHtmlString(ToRGBHex(playerColors[0].color), out playerGetColor[i]);
                 colorDisplay[i].color = playerGetColor[i];
                 playerColors.Remove(playerColors[0]);
             }
-            
+
 
             /*ColorUtility.TryParseHtmlString(player2ColorList[index], out player2Color);
             halfRight.color = player2Color;*/
@@ -65,7 +65,7 @@ namespace ColorSelection
             }
 
 
-            if(playerColors[index[indexPlayer]].indexUnlock > GetPlayerFromData("Player"+(indexPlayer+1)).winCount)
+            if (playerColors[index[indexPlayer]].indexUnlock > GetPlayerFromData("Player" + (indexPlayer + 1)).winCount)
             {
                 SetPlayerColor(indexPlayer);
                 return;
@@ -75,31 +75,6 @@ namespace ColorSelection
             colorDisplay[indexPlayer].color = playerGetColor[indexPlayer];
             playerColors.Remove(playerColors[index[indexPlayer]]);
         }
-
-        /*public void SetPlayer2Color(bool status)
-        {
-            if (status)
-            {
-                index++;
-
-                if (index > player2ColorList.Count - 1)
-                {
-                    index = 0;
-                }
-            }
-            else
-            {
-                index--;
-
-                if (index < 0)
-                {
-                    index = player2ColorList.Count - 1;
-                }
-            }
-
-            ColorUtility.TryParseHtmlString(player2ColorList[index], out player2Color);
-            halfRight.color = player2Color;
-        }*/
 
         int GetRandomNumber(int min, int max)
         {
@@ -113,7 +88,7 @@ namespace ColorSelection
 
         private void BackToList(Color color)
         {
-            foreach(UnlockColor c in baseColor)
+            foreach (UnlockColor c in baseColor)
             {
                 if (color == c.color)
                 {
@@ -124,26 +99,28 @@ namespace ColorSelection
 
         private void OnDestroy()
         {
-            for(int i=1; i<playerGetColor.Length+1; i++)
+            for (int i = 1; i < playerGetColor.Length + 1; i++)
             {
-                PlayerPrefs.SetString("Player"+i+"Color", ToRGBHex(playerGetColor[i-1]));
-            }   
+                PlayerPrefs.SetString("Player" + i + "Color", ToRGBHex(playerGetColor[i - 1]));
+            }
         }
 
         private void LoadDataPlayer()
         {
             MatchHistory history = new MatchHistory();
             playersData = history.LoadData();
-            
+
             if (playersData.Length < playerGetColor.Length)
             {
                 PlayerData[] temp = new PlayerData[playerGetColor.Length];
-                for(int i=0; i<playersData.Length; i++)
+                for (int i = 0; i < playersData.Length; i++)
                 {
                     temp[i] = playersData[i];
                 }
 
-                for(int j=playersData.Length-1; j<temp.Length; j++)
+                int index = playersData.Length - 1 < 0 ? 0 : playersData.Length - 1;
+
+                for (int j = index; j < temp.Length; j++)
                 {
                     temp[j] = new PlayerData();
                     temp[j].id = "Player" + j;
@@ -154,7 +131,7 @@ namespace ColorSelection
 
         private PlayerData GetPlayerFromData(string id)
         {
-            foreach(PlayerData player in playersData)
+            foreach (PlayerData player in playersData)
             {
                 if (player.id == id)
                 {
