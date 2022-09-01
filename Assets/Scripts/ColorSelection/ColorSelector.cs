@@ -1,3 +1,4 @@
+using Paintastic.Player;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,8 +8,12 @@ namespace ColorSelection
 {
     public class ColorSelector : MonoBehaviour
     {
+        /*[SerializeField]
+        private List<UnlockColor> playerColors;*/
         [SerializeField]
-        private List<UnlockColor> playerColors;
+        private ScriptableMaterialBlock scriptableBlock;
+
+        private List<PlayerMaterialBlock> playerColors;
 
         [SerializeField]
         private Image[] colorDisplay;
@@ -19,14 +24,15 @@ namespace ColorSelection
         private Color[] playerGetColor;
 
         //public Color player2Color;
-        private UnlockColor[] baseColor;
+        private PlayerMaterialBlock[] baseColor;
         private int[] index;
         private PlayerData[] playersData;
 
         private void Start()
         {
+            playerColors = scriptableBlock.materialProperty;
             LoadDataPlayer();
-            baseColor = new UnlockColor[playerColors.Count];
+            baseColor = new PlayerMaterialBlock[playerColors.Count];
             for (int i=0; i<playerColors.Count; i++)
             {
                 baseColor[i] = playerColors[i];
@@ -71,35 +77,11 @@ namespace ColorSelection
                 return;
             }
             BackToList(playerGetColor[indexPlayer]);
+            //Debug.Log(playerColors[indexPlayer].propertyId);
             ColorUtility.TryParseHtmlString(ToRGBHex(playerColors[index[indexPlayer]].color), out playerGetColor[indexPlayer]);
             colorDisplay[indexPlayer].color = playerGetColor[indexPlayer];
             playerColors.Remove(playerColors[index[indexPlayer]]);
         }
-
-        /*public void SetPlayer2Color(bool status)
-        {
-            if (status)
-            {
-                index++;
-
-                if (index > player2ColorList.Count - 1)
-                {
-                    index = 0;
-                }
-            }
-            else
-            {
-                index--;
-
-                if (index < 0)
-                {
-                    index = player2ColorList.Count - 1;
-                }
-            }
-
-            ColorUtility.TryParseHtmlString(player2ColorList[index], out player2Color);
-            halfRight.color = player2Color;
-        }*/
 
         int GetRandomNumber(int min, int max)
         {
@@ -113,9 +95,11 @@ namespace ColorSelection
 
         private void BackToList(Color color)
         {
-            foreach(UnlockColor c in baseColor)
+            //Debug.Log("header "+ToRGBHex(color));
+            foreach (PlayerMaterialBlock c in baseColor)
             {
-                if (color == c.color)
+                //Debug.Log(ToRGBHex(c.color));
+                if (ToRGBHex(color).Equals(ToRGBHex(c.color)))
                 {
                     playerColors.Add(c);
                 }
