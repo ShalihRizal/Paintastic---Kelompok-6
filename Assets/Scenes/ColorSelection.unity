@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68842536a134b2a46a0574bf0464327a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPlayerReady: 0000
+  isPlayerReady: 
   NextButton: {fileID: 419352290}
   colorSelector: {fileID: 169367294}
 --- !u!1 &38656283
@@ -552,22 +552,22 @@ MonoBehaviour:
     indexUnlock: 0
   - color: {r: 0.99215686, g: 0.9764706, b: 0.9411765, a: 1}
     indexUnlock: 0
+  - color: {r: 0.99607843, g: 0.87058824, b: 0.827451, a: 1}
+    indexUnlock: 0
   - color: {r: 0.92941177, g: 0.85882354, b: 0.90588236, a: 1}
     indexUnlock: 0
   - color: {r: 0, g: 0, b: 0, a: 1}
-    indexUnlock: 2
+    indexUnlock: 1
   - color: {r: 0.80784315, g: 0.2509804, b: 0.47843137, a: 1}
     indexUnlock: 4
   - color: {r: 0.74509805, g: 0.13725491, b: 0.14901961, a: 1}
     indexUnlock: 6
   - color: {r: 0.9882353, g: 1, b: 0.23137255, a: 1}
-    indexUnlock: 8
+    indexUnlock: 6
   - color: {r: 0.44705883, g: 1, b: 0.9843137, a: 1}
-    indexUnlock: 10
+    indexUnlock: 8
   - color: {r: 0.7529412, g: 0.5294118, b: 0, a: 1}
-    indexUnlock: 12
-  - color: {r: 1, g: 0.25581396, b: 0, a: 1}
-    indexUnlock: 14
+    indexUnlock: 8
   colorDisplay:
   - {fileID: 937788682}
   - {fileID: 578293902}
