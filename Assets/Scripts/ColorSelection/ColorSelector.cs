@@ -95,10 +95,8 @@ namespace ColorSelection
 
         private void BackToList(Color color)
         {
-            //Debug.Log("header "+ToRGBHex(color));
             foreach (PlayerMaterialBlock c in baseColor)
             {
-                //Debug.Log(ToRGBHex(c.color));
                 if (ToRGBHex(color).Equals(ToRGBHex(c.color)))
                 {
                     playerColors.Add(c);
@@ -108,9 +106,21 @@ namespace ColorSelection
 
         private void OnDestroy()
         {
+            foreach(Color c in playerGetColor)
+            {
+                BackToList(c);
+            }
             for(int i=1; i<playerGetColor.Length+1; i++)
             {
-                PlayerPrefs.SetString("Player"+i+"Color", ToRGBHex(playerGetColor[i-1]));
+                int _throw=0;
+                foreach (PlayerMaterialBlock c in baseColor)
+                {
+                    if (ToRGBHex(playerGetColor[i - 1]).Equals(ToRGBHex(c.color)))
+                    {
+                        _throw = c.propertyId;
+                    }
+                }
+                PlayerPrefs.SetInt("Player"+i+"Color", _throw);
             }   
         }
 
