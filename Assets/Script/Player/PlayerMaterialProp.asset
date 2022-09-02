@@ -13,50 +13,8 @@ MonoBehaviour:
   m_Name: PlayerMaterialProp
   m_EditorClassIdentifier: 
   materialProperty:
-  - propertyId: 0
-    indexUnlock: 0
-    color: {r: 0.49803922, g: 0.68235296, b: 0.13725491, a: 0}
-    baseMap: {fileID: 0}
-    metallic: 0
-    smoothness: 0
-  - propertyId: 1
-    indexUnlock: 0
-    color: {r: 0.6666667, g: 0.654902, b: 0.96862745, a: 0}
-    baseMap: {fileID: 0}
-    metallic: 0
-    smoothness: 0
-  - propertyId: 2
-    indexUnlock: 0
-    color: {r: 1, g: 0.8745098, b: 0.6, a: 0}
-    baseMap: {fileID: 0}
-    metallic: 0
-    smoothness: 0
-  - propertyId: 3
-    indexUnlock: 0
-    color: {r: 0.99215686, g: 0.68235296, b: 0.79607844, a: 0}
-    baseMap: {fileID: 0}
-    metallic: 0
-    smoothness: 0
-  - propertyId: 4
-    indexUnlock: 0
-    color: {r: 0.99215686, g: 0.9764706, b: 0.9411765, a: 0}
-    baseMap: {fileID: 0}
-    metallic: 0
-    smoothness: 0
-  - propertyId: 5
-    indexUnlock: 0
-    color: {r: 0.99607843, g: 0.87058824, b: 0.827451, a: 0}
-    baseMap: {fileID: 0}
-    metallic: 0
-    smoothness: 0
-  - propertyId: 6
-    indexUnlock: 0
-    color: {r: 0.92941177, g: 0.85882354, b: 0.90588236, a: 0}
-    baseMap: {fileID: 0}
-    metallic: 0
-    smoothness: 0
   - propertyId: 7
-    indexUnlock: 4
+    indexUnlock: 2
     color: {r: 0, g: 0, b: 0, a: 0}
     baseMap: {fileID: 0}
     metallic: 0
@@ -74,20 +32,62 @@ MonoBehaviour:
     metallic: 0
     smoothness: 0
   - propertyId: 10
-    indexUnlock: 6
+    indexUnlock: 8
     color: {r: 0.9882353, g: 1, b: 0.23137255, a: 0}
     baseMap: {fileID: 0}
     metallic: 0
     smoothness: 0
   - propertyId: 11
-    indexUnlock: 8
+    indexUnlock: 10
     color: {r: 0.44705883, g: 1, b: 0.9843137, a: 0}
     baseMap: {fileID: 0}
     metallic: 0
     smoothness: 0
   - propertyId: 12
-    indexUnlock: 8
+    indexUnlock: 12
     color: {r: 0.7529412, g: 0.5294118, b: 0, a: 0}
+    baseMap: {fileID: 0}
+    metallic: 0
+    smoothness: 0
+  - propertyId: 2
+    indexUnlock: 0
+    color: {r: 1, g: 0.8745098, b: 0.6, a: 0}
+    baseMap: {fileID: 0}
+    metallic: 0
+    smoothness: 0
+  - propertyId: 1
+    indexUnlock: 0
+    color: {r: 0.6666667, g: 0.654902, b: 0.96862745, a: 0}
+    baseMap: {fileID: 0}
+    metallic: 0
+    smoothness: 0
+  - propertyId: 3
+    indexUnlock: 0
+    color: {r: 0.99215686, g: 0.68235296, b: 0.79607844, a: 0}
+    baseMap: {fileID: 0}
+    metallic: 0
+    smoothness: 0
+  - propertyId: 6
+    indexUnlock: 0
+    color: {r: 0.92941177, g: 0.85882354, b: 0.90588236, a: 0}
+    baseMap: {fileID: 0}
+    metallic: 0
+    smoothness: 0
+  - propertyId: 0
+    indexUnlock: 0
+    color: {r: 0.49803922, g: 0.68235296, b: 0.13725491, a: 0}
+    baseMap: {fileID: 0}
+    metallic: 0
+    smoothness: 0
+  - propertyId: 5
+    indexUnlock: 0
+    color: {r: 0.99607843, g: 0.87058824, b: 0.827451, a: 0}
+    baseMap: {fileID: 0}
+    metallic: 0
+    smoothness: 0
+  - propertyId: 4
+    indexUnlock: 0
+    color: {r: 0.99215686, g: 0.9764706, b: 0.9411765, a: 0}
     baseMap: {fileID: 0}
     metallic: 0
     smoothness: 0

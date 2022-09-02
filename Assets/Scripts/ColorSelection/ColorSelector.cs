@@ -44,9 +44,14 @@ namespace ColorSelection
 
             for (int i = 0; i < playerGetColor.Length; i++)
             {
-                ColorUtility.TryParseHtmlString(ToRGBHex(playerColors[0].color), out playerGetColor[i]);
+                int idx = 0;
+                while (playerColors[idx].indexUnlock > levelPlayers[i])
+                {
+                    idx++;
+                }
+                ColorUtility.TryParseHtmlString(ToRGBHex(playerColors[idx].color), out playerGetColor[i]);
                 colorDisplay[i].color = playerGetColor[i];
-                playerColors.Remove(playerColors[0]);
+                playerColors.Remove(playerColors[idx]);
             }
 
         }
