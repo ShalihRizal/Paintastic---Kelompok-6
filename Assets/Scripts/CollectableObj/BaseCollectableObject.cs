@@ -23,14 +23,6 @@ namespace Paintastic.CollectibleObject
         private Collider _collider;
         private MeshRenderer _renderer;
 
-        private void Start()
-        {
-            _vfx = transform.GetChild(0).gameObject;
-            _vfx.SetActive(false);
-            _collider = GetComponent<Collider>();
-            _renderer = GetComponent<MeshRenderer>();
-        }
-
         void Update()
         {
             AnimateSequence();    
@@ -47,6 +39,11 @@ namespace Paintastic.CollectibleObject
 
         public void InitInstantiate(GridCell[,] grid, Action onInactive)
         {
+            _vfx = transform.GetChild(0).gameObject;
+            _vfx.SetActive(false);
+            _collider = GetComponent<Collider>();
+            _renderer = GetComponent<MeshRenderer>();
+
             _grid = grid;
             gameObject.SetActive(false);
             OnObjectInactive = onInactive;
@@ -55,7 +52,7 @@ namespace Paintastic.CollectibleObject
         public void SpawnObject(Vector2Int _pos, Transform _transform)
         {
             v2 = _pos;
-
+            _vfx.SetActive(false);
             transform.position = new Vector3(
                 _transform.position.x,
                 transform.position.y,

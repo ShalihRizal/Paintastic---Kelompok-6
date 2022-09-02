@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Kilfeed : MonoBehaviour
+public class Killfeed : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    float duration = 4;
+    public void StartInit()
     {
-        
+        gameObject.SetActive(true);    
+        StartCoroutine("Die", duration);
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator Die(float amount)
     {
-        
+        yield return new WaitForSeconds(amount);
+        gameObject.SetActive(false);
     }
 }

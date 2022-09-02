@@ -42,8 +42,8 @@ public class DataSetting : MonoBehaviour
 [System.Serializable]
 public class SettingConfig
 {
-    public float BgmVolume = 20;
-    public float SfxVolume = 20;
+    public float BgmVolume = 1;
+    public float SfxVolume = 1;
     public bool IsMute = false;
 
     public int QualityIndex = 0;

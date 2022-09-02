@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 5726201720032521269}
   - component: {fileID: 2418801956582427296}
   - component: {fileID: 7453071624856797444}
-  - component: {fileID: 5754329162919823553}
+  - component: {fileID: 5355099280881799608}
   m_Layer: 5
   m_Name: KillfeedRow
   m_TagString: Untagged
@@ -234,7 +234,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &5754329162919823553
+--- !u!114 &5355099280881799608
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
