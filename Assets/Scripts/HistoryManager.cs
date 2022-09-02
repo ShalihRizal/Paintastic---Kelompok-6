@@ -38,6 +38,7 @@ public class HistoryManager : MonoBehaviour
             t.GetChild(0).GetComponent<Text>().text = index.ToString();
             t.GetChild(1).GetComponent<Text>().text = player.id;
             t.GetChild(2).GetComponent<Text>().text = player.winCount.ToString();
+            t.GetChild(3).GetComponent<Text>().text = player.totalMatch.ToString();
             index++;
         }
     }

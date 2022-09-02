@@ -4,29 +4,45 @@ using UnityEngine;
 
 public class MatchHistory
 {
-    public void OnPlayerWin(string id)
+    public void PlayerRecord(string[] id, string winnerId)
     {
-        bool isWinnerFound = false;
         PlayerData[] players = LoadData();
-        for (int i=0; i<players.Length; i++)
+        bool isPlayerFound = false;
+
+        foreach (string player in id)
         {
-            if(players[i].id == id)
+            isPlayerFound = false;
+            for (int i = 0; i < players.Length; i++)
+            {
+                if (players[i].id == player)
+                {
+                    players[i].totalMatch += 1;
+                    isPlayerFound = true;
+                    break;
+                }
+            }
+            if(!isPlayerFound)
+            {
+                PlayerData[] temp = players;
+                players = new PlayerData[temp.Length + 1];
+                for (int i = 0; i < temp.Length; i++)
+                {
+                    players[i] = temp[i];
+                }
+                players[temp.Length].id = player;
+                players[temp.Length].totalMatch += 1;
+            }
+        }
+
+        for (int i = 0; i < players.Length; i++)
+        {
+            if (players[i].id == winnerId)
             {
                 players[i].winCount += 1;
-                isWinnerFound = true;
+                break;
             }
         }
-        if (!isWinnerFound)
-        {
-            PlayerData[] temp = players;
-            players = new PlayerData[temp.Length + 1];
-            for (int i=0; i<temp.Length; i++)
-            {
-                players[i] = temp[i];
-            }
-            players[temp.Length].id = id;
-            players[temp.Length].winCount += 1;
-        }
+
         ArrayPlayer arrayPlayer = new ArrayPlayer();
         arrayPlayer.arrayPlayer = players;
         SaveData(arrayPlayer);
@@ -44,8 +60,6 @@ public class MatchHistory
         else
         {
             arrayData = JsonUtility.FromJson<ArrayPlayer>(json);
-            /*Debug.Log(arrayData.arrayPlayer[0].id);
-            Debug.Log(arrayData.arrayPlayer[0].winCount);*/
         }
         return arrayData.arrayPlayer;
         
@@ -66,6 +80,26 @@ public struct PlayerData
 {
     public string id;
     public int winCount;
+    public int totalMatch;
+
+    public int LevelCounter(int baseEXPLevel)
+    {
+        int level = EXPCounter();
+        Debug.Log(level);
+        return Mathf.FloorToInt(level / baseEXPLevel) + 1;
+    }
+    public int EXPCounter()
+    {
+        int match = totalMatch - winCount;
+        if (match <= 0)
+        {
+            match = 0;
+        }
+        
+        int exp = winCount * 100;
+        exp += match * 50;
+        return exp;
+    }
 }
 
 [System.Serializable]
