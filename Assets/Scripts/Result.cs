@@ -13,21 +13,40 @@ public class Result : MonoBehaviour
     [SerializeField]
     ScoreManager scoreManager;
 
+    /*[SerializeField]
+    private TextMeshProUGUI player1ScoreText;
+    [SerializeField]
+    private TextMeshProUGUI player2ScoreText;*/
     [SerializeField]
     private TextMeshProUGUI[] playerScoreText;
-
     [SerializeField]
     private TextMeshProUGUI playerWonText;
 
     void OnEnable()
     {
         MatchHistory history = new MatchHistory();
-        MatchRecordManager matchRecordManager = new MatchRecordManager();  
-
         for(int i = 0; i < playerScoreText.Length; i++)
         {
             playerScoreText[i].text = "Player " + (i+1) + " score : " + scoreManager.GetPlayerScore(i).ToString();
         }
+
+        /*if (scoreManager.GetPlayerScore(0) > scoreManager.GetPlayerScore(1))
+        {
+            Time.timeScale = 0;
+            playerWonText.text = "Player 1 Won";
+            history.OnPlayerWin("Player1");
+        }
+        else if (scoreManager.GetPlayerScore(1) > scoreManager.GetPlayerScore(0))
+        {
+            Time.timeScale = 0;
+            playerWonText.text = "Player 2 Won";
+            history.OnPlayerWin("Player2");
+        }
+        else
+        {
+            Time.timeScale = 0;
+            playerWonText.text = "Draw !";
+        }*/
         
         int highScore = scoreManager.GetPlayerScore().Max();
         int highScoreIndex = scoreManager.GetPlayerScore().ToList().IndexOf(highScore);
@@ -46,17 +65,6 @@ public class Result : MonoBehaviour
         {
             playerWonText.text = "Player "+ (highScoreIndex + 1) +" Won";
             history.OnPlayerWin("Player"+ (highScoreIndex + 1));
-
-            string[] playersColor = new string[scoreManager.GetPlayerScore().Length];
-            string[] playersID = new string[scoreManager.GetPlayerScore().Length];
-
-            for (int i = 0; i < playersColor.Length; i++)
-            {
-                playersID[i] = "Player" + (i + 1);
-                playersColor[i] = PlayerPrefs.GetString(playersID[i] + "Color");
-            }
-
-            matchRecordManager.RecordMatch(playersID, scoreManager.GetPlayerScore(), playersColor);
         }
         else
         {

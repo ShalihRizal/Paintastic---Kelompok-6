@@ -34,7 +34,7 @@ public class MatchHistory
     public PlayerData[] LoadData()
     {
         string json = PlayerPrefs.GetString("SaveData");
-        
+        Debug.Log(json);
         ArrayPlayer arrayData;
         if (string.IsNullOrWhiteSpace(json))
         {

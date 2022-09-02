@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68842536a134b2a46a0574bf0464327a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPlayerReady: 
+  isPlayerReady: 0000
   NextButton: {fileID: 419352290}
   colorSelector: {fileID: 169367294}
 --- !u!1 &38656283
@@ -557,7 +557,7 @@ MonoBehaviour:
   - color: {r: 0.92941177, g: 0.85882354, b: 0.90588236, a: 1}
     indexUnlock: 0
   - color: {r: 0, g: 0, b: 0, a: 1}
-    indexUnlock: 1
+    indexUnlock: 4
   - color: {r: 0.80784315, g: 0.2509804, b: 0.47843137, a: 1}
     indexUnlock: 4
   - color: {r: 0.74509805, g: 0.13725491, b: 0.14901961, a: 1}
