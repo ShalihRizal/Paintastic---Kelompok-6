@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 5726201720032521269}
   - component: {fileID: 2418801956582427296}
   - component: {fileID: 7453071624856797444}
-  - component: {fileID: 4282335765104351037}
+  - component: {fileID: 1257185544575787686}
   m_Layer: 5
   m_Name: KillfeedRow
   m_TagString: Untagged
@@ -234,7 +234,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &4282335765104351037
+--- !u!114 &1257185544575787686
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -243,7 +243,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7982782143014931782}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ada566588fabf254cbb97a0222c6319a, type: 3}
+  m_Script: {fileID: 11500000, guid: 63c75075390347d4abd5e892d95c8110, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 4

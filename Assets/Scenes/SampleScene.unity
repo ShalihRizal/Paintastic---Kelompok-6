@@ -3431,7 +3431,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 1, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -4740,7 +4740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f1c5a0a7cfd7514cb0159e5a3845513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  killfeedPrefab: {fileID: 4282335765104351037, guid: dfc0febc905cfb448a680a9ae034a6c6, type: 3}
+  killfeedPrefab: {fileID: 1257185544575787686, guid: dfc0febc905cfb448a680a9ae034a6c6, type: 3}
   killfeedPanel: {fileID: 1993357068}
   uiManager: {fileID: 669466557}
   initialSize: 10
