@@ -67,7 +67,7 @@ public class Result : MonoBehaviour
         for (int i = 0; i < playerscolor.Length; i++)
         {
             playersID[i] = "Player" + (i + 1);
-            playerscolor[i] = PlayerPrefs.GetString(playersID[i] + "Color");
+            playerscolor[i] = PlayerPrefs.GetString(playersID[i] + "Color"); //change this
         }
 
         history.PlayerRecord(dataPlayer, winner);

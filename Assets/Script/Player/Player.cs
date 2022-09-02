@@ -11,12 +11,10 @@ namespace Paintastic.Player
         [SerializeField] private GameObject playerObject;
         [SerializeField] private ScriptableMaterialBlock colorMaterialBlock;
         private Material playerMaterial;
-        public int LOOKTHIS;
 
         private float timeBetweenCollectPoint = 10;
         private void Awake()
         {
-            LOOKTHIS = PlayerPrefs.GetInt(gameObject.tag + "Color");
             playerMaterial = playerObject.GetComponent<MeshRenderer>().material;
             //Color color;
 
@@ -53,6 +51,9 @@ namespace Paintastic.Player
         public void SetTexture(GameObject _targetObject, Material _targetMaterial, int id)
         {
             PlayerMaterialBlock currentBlock = colorMaterialBlock.materialProperty[GetIndexOfId(colorMaterialBlock,id)];
+            PlayerPrefs.SetString(gameObject.tag + "Color", "#"+ColorUtility.ToHtmlStringRGB(currentBlock.color)); //here
+            Debug.Log(ColorUtility.ToHtmlStringRGB(currentBlock.color));
+            //string.Format("#{0:X2}{1:X2}{2:X2}", ToByte(c.r), ToByte(c.g), ToByte(c.b))
             /*GameObject go = _targetObject.gameObject;
             Material material = _targetMaterial;*/
             _targetMaterial.color = currentBlock.color;
