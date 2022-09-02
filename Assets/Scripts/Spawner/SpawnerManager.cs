@@ -4,72 +4,73 @@ using UnityEngine;
 using Paintastic.GridSystem;
 using Paintastic.Player;
 
-public class SpawnerManager : MonoBehaviour
+namespace Paintastic.Spawner
 {
-    private GameGrid _gameGrid;
-
-    private PlayerMovement[] _players;
-
-    private List<ISpawnObject> objectInField;
-
-    public void InitStart(GameGrid gg, PlayerMovement[] players)
+    public class SpawnerManager : MonoBehaviour
     {
-        objectInField = new List<ISpawnObject>();
+        private GameGrid _gameGrid;
 
-        _gameGrid = gg;
+        private PlayerMovement[] _players;
 
-        _players = players;
+        private List<ISpawnObject> objectInField;
 
-        Vector2Int[] spawnPos = new Vector2Int[4] {
+        public void InitStart(GameGrid gg, PlayerMovement[] players)
+        {
+            objectInField = new List<ISpawnObject>();
+
+            _gameGrid = gg;
+
+            _players = players;
+
+            Vector2Int[] spawnPos = new Vector2Int[4] {
             new Vector2Int(0, 0),
             new Vector2Int(_gameGrid.gridwidth - 1 , _gameGrid.gridHeight - 1),
             new Vector2Int(0, _gameGrid.gridHeight - 1),
             new Vector2Int(_gameGrid.gridwidth - 1, 0)
         };
 
-        int idx = 0;
-        foreach (PlayerMovement player in _players)
-        {
-            objectInField.Add(player);
-
-
-
-            if (idx < 4)
+            int idx = 0;
+            foreach (PlayerMovement player in _players)
             {
-                player.StartInit(_gameGrid.GetGrid(), spawnPos[idx]);
-                idx++;
+                objectInField.Add(player);
+
+                if (idx < 4)
+                {
+                    player.StartInit(_gameGrid.GetGrid(), spawnPos[idx]);
+                    idx++;
+                }
+                else RequestSpawnPos(player);
             }
-            else RequestSpawnPos(player);
-        }
-    }
-
-    public void RequestSpawnPos(ISpawnObject _object)
-    {
-        Vector2Int randPos = new Vector2Int();
-        do
-        {
-            randPos = new Vector2Int(
-                Random.Range(0, _gameGrid.GetGrid().GetLength(0)),
-                Random.Range(0, _gameGrid.GetGrid().GetLength(1))
-                );
-        } while (!CheckCanSpawn(randPos));
-
-        _object.SpawnObject(randPos, _gameGrid.GetGrid()[randPos.x, randPos.y].transform);
-
-        objectInField.Add(_object);
-        _object.DeActiveObject += ObjectDeActive;
-    }
-
-    private bool CheckCanSpawn(Vector2Int v2) 
-    {
-        foreach(ISpawnObject obj in objectInField)
-        {
-            if (v2 == obj.GetCurrentPosition()) return false;
         }
 
-        return true;
-    }
+        public void RequestSpawnPos(ISpawnObject _object)
+        {
+            Vector2Int randPos = new Vector2Int();
+            do
+            {
+                randPos = new Vector2Int(
+                    Random.Range(0, _gameGrid.GetGrid().GetLength(0)),
+                    Random.Range(0, _gameGrid.GetGrid().GetLength(1))
+                    );
+            } while (!CheckCanSpawn(randPos));
 
-    private void ObjectDeActive(ISpawnObject obj) => objectInField.Remove(obj);
-    public GridCell[,] GetGrid() => _gameGrid.GetGrid();
+            _object.SpawnObject(randPos, _gameGrid.GetGrid()[randPos.x, randPos.y].transform);
+
+            objectInField.Add(_object);
+            _object.DeActiveObject += ObjectDeActive;
+        }
+
+        private bool CheckCanSpawn(Vector2Int v2)
+        {
+            foreach (ISpawnObject obj in objectInField)
+            {
+                if (v2 == obj.GetCurrentPosition()) return false;
+            }
+
+            return true;
+        }
+
+        private void ObjectDeActive(ISpawnObject obj) => objectInField.Remove(obj);
+        public GridCell[,] GetGrid() => _gameGrid.GetGrid();
+    }
 }

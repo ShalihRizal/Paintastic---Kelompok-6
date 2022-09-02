@@ -7,86 +7,89 @@ using TMPro;
 using Paintastic.Timer;
 using UnityEngine.UI;
 
-public class UIManager : MonoBehaviour
+namespace Paintastic.UIManager
 {
-
-    [SerializeField]
-    private TextMeshProUGUI[] playerScoreText;
-
-    [SerializeField]
-    private Image[] playerScoreBar;
-
-    [SerializeField]
-    private GameObject hud;
-
-    [SerializeField]
-    ScoreManager scoreManager;
-
-    [SerializeField]
-    private GameObject resultScreen;
-
-    [SerializeField]
-    private GameObject pauseButton;
-
-    [SerializeField]
-    Timer timer;
-
-    float fillamount;
-    public Action<string, int> OnScored;
-
-    private void OnEnable()
+    public class UIManager : MonoBehaviour
     {
-        scoreManager.OnScoreChanged += OnScoreChanged;
-        timer.OnTimesUp += onTimesUp;
-        scoreManager.OnKillfeed += AddKillFeed;
-    }
 
-    private void OnDisable()
-    {
-        scoreManager.OnScoreChanged -= OnScoreChanged;
-        timer.OnTimesUp -= onTimesUp;
-        scoreManager.OnKillfeed -= AddKillFeed;
-    }
+        [SerializeField]
+        private TextMeshProUGUI[] playerScoreText;
 
-    private void OnScoreChanged()
-    {
-        for (int i = 0; i < playerScoreText.Length; i++)
+        [SerializeField]
+        private Image[] playerScoreBar;
+
+        [SerializeField]
+        private GameObject hud;
+
+        [SerializeField]
+        ScoreManager.ScoreManager scoreManager;
+
+        [SerializeField]
+        private GameObject resultScreen;
+
+        [SerializeField]
+        private GameObject pauseButton;
+
+        [SerializeField]
+        Timer.Timer timer;
+
+        float fillamount;
+        public Action<string, int> OnScored;
+
+        private void OnEnable()
         {
-            playerScoreText[i].text = scoreManager.GetPlayerScore(i).ToString();
-            playerScoreBar[i].fillAmount = (float)scoreManager.GetPlayerScore(i) / GetTotalScore();
-
+            scoreManager.OnScoreChanged += OnScoreChanged;
+            timer.OnTimesUp += onTimesUp;
+            scoreManager.OnKillfeed += AddKillFeed;
         }
-    }
-    private void Awake()
-    {
-        Color color;
 
-        for (int i = 1; i < playerScoreBar.Length + 1; i++)
+        private void OnDisable()
         {
-            ColorUtility.TryParseHtmlString(PlayerPrefs.GetString("Player" + i + "Color"), out color);
-            playerScoreBar[i - 1].color = color;
+            scoreManager.OnScoreChanged -= OnScoreChanged;
+            timer.OnTimesUp -= onTimesUp;
+            scoreManager.OnKillfeed -= AddKillFeed;
         }
-    }
 
-    int GetTotalScore()
-    {
-        int totalScore = 0;
-        for (int i = 0; i < playerScoreBar.Length; i++)
+        private void OnScoreChanged()
         {
-            totalScore += scoreManager.GetPlayerScore(i);
+            for (int i = 0; i < playerScoreText.Length; i++)
+            {
+                playerScoreText[i].text = scoreManager.GetPlayerScore(i).ToString();
+                playerScoreBar[i].fillAmount = (float)scoreManager.GetPlayerScore(i) / GetTotalScore();
+
+            }
         }
-        return totalScore;
-    }
+        private void Awake()
+        {
+            Color color;
 
-    void onTimesUp()
-    {
+            for (int i = 1; i < playerScoreBar.Length + 1; i++)
+            {
+                ColorUtility.TryParseHtmlString(PlayerPrefs.GetString("Player" + i + "Color"), out color);
+                playerScoreBar[i - 1].color = color;
+            }
+        }
 
-        hud.SetActive(false);
-        pauseButton.gameObject.SetActive(false);
-        resultScreen.SetActive(true);
-    }
-    void AddKillFeed(string playerName, int score)
-    {
-        OnScored?.Invoke(playerName, score);
+        int GetTotalScore()
+        {
+            int totalScore = 0;
+            for (int i = 0; i < playerScoreBar.Length; i++)
+            {
+                totalScore += scoreManager.GetPlayerScore(i);
+            }
+            return totalScore;
+        }
+
+        void onTimesUp()
+        {
+
+            hud.SetActive(false);
+            pauseButton.gameObject.SetActive(false);
+            resultScreen.SetActive(true);
+        }
+        void AddKillFeed(string playerName, int score)
+        {
+            OnScored?.Invoke(playerName, score);
+        }
     }
 }

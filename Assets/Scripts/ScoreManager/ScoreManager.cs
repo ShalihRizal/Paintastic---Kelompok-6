@@ -23,7 +23,7 @@ namespace Paintastic.ScoreManager
         public Action OnScoreChanged;
         public Action<string, int> OnKillfeed;
 
-        public void StartInit(Player.Player[] p)
+        public void InitStart(Player.Player[] p)
         {
 
             playerObject = new Player.Player[p.Length];

@@ -5,29 +5,27 @@ using Paintastic.GridSystem;
 using Paintastic.ScoreManager;
 using Paintastic.Timer;
 using Paintastic.Player;
+using Paintastic.Spawner;
+using Paintastic.CollectibleObject;
 
-public class StartLoader : MonoBehaviour
+namespace Paintastic.StartLoader
 {
-    [SerializeField] private PlayerMovement[] players;
-    [SerializeField] private Player[] playerClass;
-    [SerializeField] private GameGrid _gameGrid;
-    [SerializeField] private SpawnerManager _spawner;
-    [SerializeField] private PoolObject _pool;
-    [SerializeField] private Timer _timer;
-    [SerializeField] private ScoreManager _scoreManager;
-
-    void Start()
+    public class StartLoader : MonoBehaviour
     {
-        /*for(int i = 0; i < players.Length; i++)
+        [SerializeField] private PlayerMovement[] players;
+        [SerializeField] private Player.Player[] playerClass;
+        [SerializeField] private GameGrid _gameGrid;
+        [SerializeField] private SpawnerManager _spawner;
+        [SerializeField] private PoolObject _pool;
+        [SerializeField] private Timer.Timer _timer;
+        [SerializeField] private ScoreManager.ScoreManager _scoreManager;
+
+        void Start()
         {
-            playerClass[i] = players[i].gameObject.GetComponent<Player>();
-        }*/
-        _spawner.InitStart(_gameGrid, players);
-        _pool.InitStart(_spawner, _timer);
-        /*_scoreManager.StartInit(
-            players[0].GetComponent<Player>(),
-            players[1].GetComponent<Player>()
-            );*/
-        _scoreManager.StartInit(playerClass);
+            _gameGrid.StartInit();
+            _spawner.InitStart(_gameGrid, players);
+            _pool.InitStart(_spawner, _timer);
+            _scoreManager.InitStart(playerClass);
+        }
     }
 }

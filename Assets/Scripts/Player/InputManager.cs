@@ -6,9 +6,6 @@ namespace Paintastic.Player
 {
     public class InputManager : MonoBehaviour
     {
-        /*[Header("Player")]
-        [SerializeField] private PlayerController player;*/
-
         [Header("Direction")]
         [SerializeField] private KeyCode forward;
         [SerializeField] private KeyCode right;

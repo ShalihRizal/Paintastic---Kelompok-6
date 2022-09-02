@@ -1,13 +1,16 @@
 using UnityEngine.UI;
 using UnityEngine;
 
-public class SceneButtonName : MonoBehaviour
+namespace Paintastic.AsignButton
 {
-    public Button button;
-    public string sceneName;
-
-    public void OnClickEventChangeScene()
+    public class SceneButtonName : MonoBehaviour
     {
-        LevelManager.instance.LoadLevel(sceneName);
+        public Button button;
+        public string sceneName;
+
+        public void OnClickEventChangeScene()
+        {
+            LevelManager.LevelManager.instance.LoadLevel(sceneName);
+        }
     }
 }

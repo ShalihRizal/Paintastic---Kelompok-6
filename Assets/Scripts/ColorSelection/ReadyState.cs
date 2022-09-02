@@ -2,46 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using ColorSelection;
 
-
-public class ReadyState : MonoBehaviour
+namespace Paintastic.ColorSelection
 {
-    [SerializeField]
-    private bool[] isPlayerReady;
-
-    [SerializeField]
-    private GameObject NextButton;
-
-    [SerializeField]
-    ColorSelector colorSelector;
-
-    public void ReadyPlayer(int index)
+    public class ReadyState : MonoBehaviour
     {
-        isPlayerReady[index] = !isPlayerReady[index];
-        CheckCanStart();
-    }
-    private bool IsAllPlayerReady()
-    {
-        foreach(bool player in isPlayerReady)
+        [SerializeField]
+        private bool[] isPlayerReady;
+
+        [SerializeField]
+        private GameObject NextButton;
+
+        [SerializeField]
+        ColorSelector colorSelector;
+
+        public void ReadyPlayer(int index)
         {
-            if(!player)
-            {
-                return false;
-            }
+            isPlayerReady[index] = !isPlayerReady[index];
+            CheckCanStart();
         }
-        return true;
-    }
-    private void CheckCanStart()
-    {
-        if (IsAllPlayerReady())
+        private bool IsAllPlayerReady()
         {
-            NextButton.SetActive(true);
-            /*for(int i=0; i<isPlayerReady.Length; i++)
+            foreach (bool player in isPlayerReady)
             {
-                PlayerPrefs.SetString("Player"+i+"Color", colorSelector.GetPlayerColor(i));
-            }*/
-            
+                if (!player)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        private void CheckCanStart()
+        {
+            if (IsAllPlayerReady())
+            {
+                NextButton.SetActive(true);
+            }
         }
     }
 }

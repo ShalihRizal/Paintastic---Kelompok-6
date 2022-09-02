@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Paintastic.GridSystem;
 using Paintastic.Player;
+using Paintastic.Audio;
 
 namespace Paintastic.CollectibleObject
 {
@@ -15,7 +16,7 @@ namespace Paintastic.CollectibleObject
             {
                 if (item.CompareTag(activator.tag)) item.ResetColor();
             }
-		AudioManager.instance.PlaySfx("SFX_Bomb");
+		    AudioManager.instance.PlaySfx("SFX_Bomb");
         }
     }
 
